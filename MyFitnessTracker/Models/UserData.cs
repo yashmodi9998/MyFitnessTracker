@@ -19,4 +19,13 @@ namespace MyFitnessTracker.Models
         public string FitnessGoal { get; set; }
         public ICollection<Workout> workouts { get; set; }
     }
+    public class UserDataDTO
+    {
+        public int UserId { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
+        public string Email { get; set; }
+        public DateTime JoinDate { get; set; }
+
+    }
 }

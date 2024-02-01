@@ -1,0 +1,11 @@
+﻿
+{
+    "UserID": 1,
+    "WorkoutDate": "2024-02-01T10:30:00",
+    "Duration": 60,
+    "ExerciseID": 1,
+    "SubExerciseID": 1,
+    "Weight": 50,
+    "Reps": 10,
+    "Notes": "Example notes"
+}
