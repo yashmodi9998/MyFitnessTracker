@@ -1,0 +1,18 @@
+﻿﻿@model IEnumerable<MyFitnessTracker.Models.WorkoutDTO>
+@{
+    ViewBag.Title = "List";
+}
+@foreach (var workout in Model)
+{
+    <h2><a href="/Workout/Details/@workout.UserID">@workout.UserName</a></h2>
+    <p>Exercise: @workout.ExerciseName</p>
+    <p>Sub Exercise: @workout.SubExerciseName</p>
+    <p>Duration: @workout.Duration</p>
+    <p>Weight: @workout.Weight</p>
+    <p>Reps: @workout.Reps</p>
+    <p>Notes: @workout.Notes</p>
+
+
+
+
+}

@@ -35,8 +35,15 @@ namespace MyFitnessTracker.Controllers
                 WorkoutDate = a.WorkoutDate,
                 UserName = a.UsersData.FName,
                 ExerciseName = a.MainExercises.ExerciseName,
-                SubExerciseName = a.SubExercises.SubExerciseName
-            }));
+                SubExerciseName = a.SubExercises.SubExerciseName,
+                Duration = a.Duration,
+                Weight =   a.Weight,
+                Reps = a.Reps,
+                Notes = a.Notes,
+                UserID = a.UserID
+
+                
+    }));
 
 
             // Return the list of WorkoutDTOs
@@ -62,7 +69,12 @@ namespace MyFitnessTracker.Controllers
                 WorkoutDate = a.WorkoutDate,
                 UserName = a.UsersData.FName,
                 ExerciseName = a.MainExercises.ExerciseName,
-                SubExerciseName = a.SubExercises.SubExerciseName
+                SubExerciseName = a.SubExercises.SubExerciseName,
+                Duration = a.Duration,
+                Weight = a.Weight,
+                Reps = a.Reps,
+                Notes = a.Notes,
+                UserID = a.UserID
             }));
             return WorkoutDTOs;
         }
@@ -154,15 +166,7 @@ namespace MyFitnessTracker.Controllers
             // curl -H "Content-Type:application/json" -d @workoutupdate.json  https://localhost:44391/api/WorkoutData/UpdateWorkout/6
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
+        // Check if a workout with the specified ID exists
         private bool WorkoutExist(int id)
         {
             return db.Workouts.Count(w => w.WorkoutID == id) > 0;

@@ -41,11 +41,19 @@ namespace MyFitnessTracker.Models
     }
     public class WorkoutDTO
     {
-       // public int WorkoutID { get; set; }
+        public int WorkoutID { get; set; }
+        public int UserID { get; set; }
         public DateTime WorkoutDate { get; set; }
         public string UserName { get; set; }
         public string ExerciseName { get; set; }
         public string SubExerciseName { get;set; }
+        public int Duration { get; set; }
+        public int Weight { get; set; }
+
+
+        public int Reps { get; set; }
+
+        public string Notes { get; set; }
 
     }
 }
