@@ -9,6 +9,9 @@ namespace MyFitnessTracker.Models
 {
     public class Workout
     {
+
+        //this workout table is mainly use for storing details of workout for user.
+        //One user can have multiple workouts, but each workout belongs to only one user.So its one to many relationship
         [Key]
         public int WorkoutID { get; set; }
         [ForeignKey("UsersData")]
@@ -19,12 +22,14 @@ namespace MyFitnessTracker.Models
 
    
         public int Duration { get; set; }
-       
+        //Many to One: each workout is associated with one main exercise,
+        //but a main exercise can be associated with multiple workouts.
         [ForeignKey("MainExercises")]
         public int ExerciseID { get; set; }
         public virtual MainExercise MainExercises { get; set; }
 
-
+        //Many-to-One:each workout is associated with one sub-exercise,
+        //but a sub-exercise can be associated with multiple workouts 
         [ForeignKey("SubExercises")]
         public int SubExerciseID { get; set; }
         public virtual SubExercise SubExercises { get; set; }

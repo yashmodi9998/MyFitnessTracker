@@ -118,7 +118,7 @@ namespace MyFitnessTracker.Controllers
 
             return Ok();
 
-//            > curl - d "" https://localhost:44391/api/WorkoutData/DeleteWorkout/2
+//            curl - d "" https://localhost:44391/api/WorkoutData/DeleteWorkout/2
         }
 
         // POST: api/WorkoutData/UpdateWorkout/1

@@ -12,6 +12,7 @@ namespace MyFitnessTracker.Models
         [Key]
         public int SubExerciseID { get; set; }
 
+        //Many - one: many sub-exercises can be associated with a single main exercise
         [ForeignKey("MainExercises")]
        
         public int ExerciseID { get; set; }

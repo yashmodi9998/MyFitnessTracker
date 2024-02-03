@@ -294,6 +294,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Workout.cshtml" />
     <Content Include="Views\Workout\List.cshtml" />
+    <Content Include="Views\Workout\Details.cshtml" />
+    <Content Include="Views\Workout\new.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
