@@ -28,4 +28,11 @@ namespace MyFitnessTracker.Models
 
 
     }
+    public class SubExerciseDTO
+    {
+        public int ExerciseID { get; set; }
+        public string ExerciseName { get; set; }
+        public int SubExerciseID { get; set; }
+        public string SubExerciseName { get; set; }
+    }
 }

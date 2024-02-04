@@ -96,16 +96,68 @@ namespace MyFitnessTracker.Controllers
 
             return View();
         }
-
         // GET: Workout/New
         public ActionResult New()
         {
             return View();
         }
+
+        // GET: Workout/Edit/5
+        public ActionResult Edit(int id)
+        {
+            //grab the workout information
+
+            //objective: communicate with our animal data api to retrieve one animal
+            //curl https://localhost:44324/api/animaldata/findanimal/{id}
+
+            string url = "FindWorkout/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            Debug.WriteLine("The response code is ");
+            Debug.WriteLine(response.StatusCode);
+            WorkoutDTO selectedUSer = response.Content.ReadAsAsync<WorkoutDTO>().Result;
+            Debug.WriteLine("Workout received : ");
+            //Debug.WriteLine(selectedanimal.AnimalName);
+
+            return View(selectedUSer);
+        }
+
+        // POST: Workout/Update/5
+        [HttpPost]
+        public ActionResult Update(int id, Workout workout)
+        {
+            try
+            {
+                Debug.WriteLine("The new Workout info is:");
+                Debug.WriteLine(workout.WorkoutID);
+                Debug.WriteLine(workout.UserID);
+
+                //serialize into JSON
+                //Send the request to the API
+
+                string url = "UpdateWorkout/" + id;
+
+
+                string jsonpayload = jss.Serialize(workout);
+                Debug.WriteLine(jsonpayload);
+
+                HttpContent content = new StringContent(jsonpayload);
+                content.Headers.ContentType.MediaType = "application/json";
+
+                //POST: api/AnimalData/UpdateAnimal/{id}
+                //Header : Content-Type: application/json
+                HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+
+
+
+                return RedirectToAction("Details/" + id);
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
-
-
-   
-   
-
+  
 }

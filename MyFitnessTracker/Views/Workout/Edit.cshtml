@@ -1,0 +1,48 @@
+﻿@model MyFitnessTracker.Models.WorkoutDTO
+<script src="~/Scripts/scripts.js"></script>
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<h2>Create Workout</h2>
+<form action="/Workout/Update/@Model.WorkoutID" method="POST">
+    <div>
+        <label>UserId:</label> <input type="text" name="UserId" value ="@Model.UserID" />
+    </div>
+    <div>
+        <label> WorkoutDate</label> <input type="datetime" name="WorkoutDate" value ="@Model.WorkoutDate" />
+    </div>
+    <div>
+        <label>Duration</label> <input type="number" name="Duration" value ="@Model.Duration"/>
+    </div>
+    <div>
+        <label for="exerciseDropdown">Select Exercise:</label>
+        <select id="exerciseDropdown" name="ExerciseID" onchange="updateSubExerciseDropdown()">
+            <option value="-1">-- Select Exercise --</option>
+        </select>
+    </div>
+    <div>
+        <label for="subExerciseDropdown">Select Sub-Exercise:</label>
+
+        <select id="subExerciseDropdown" name="SubExerciseID">
+            <option value="-1">-- Select Sub-Exercise --</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Weight</label> <input type="number" name="Weight" value ="@Model.Weight"/>
+    </div>
+    <div>
+        <label>Reps</label> <input type="number" name="Reps" value ="@Model.Reps" />
+    </div>
+    <div>
+        <label>Notes</label> <input type="text" name="Notes" value ="@Model.Notes" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update Workout" />
+
+    </div>
+</form>
+

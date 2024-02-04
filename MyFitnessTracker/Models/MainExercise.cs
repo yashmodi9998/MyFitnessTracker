@@ -22,4 +22,5 @@ namespace MyFitnessTracker.Models
         public ICollection<Workout> Workouts { get; set; }
         public ICollection<SubExercise> SubExercises{ get; set; }
     }
+   
 }

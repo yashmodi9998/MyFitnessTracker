@@ -53,6 +53,37 @@ namespace MyFitnessTracker.Controllers
         // GET: api/WorkoutData/FindUserWorkout/1
         [ResponseType(typeof(Workout))]
         [HttpGet]
+        [Route("api/WorkoutData/FindWorkout/{workoutId}")]
+        public IHttpActionResult FindWorkout(int workoutId)
+        {
+            Workout workout= db.Workouts.Find(workoutId);
+            WorkoutDTO workoutDTOs = new WorkoutDTO()
+            {
+                WorkoutID = workout.WorkoutID,
+                WorkoutDate = workout.WorkoutDate,
+                UserName = workout.UsersData.FName,
+                ExerciseName = workout.MainExercises.ExerciseName,
+                SubExerciseName = workout.SubExercises.SubExerciseName,
+                Duration = workout.Duration,
+                Weight = workout.Weight,
+                Reps = workout.Reps,
+                Notes = workout.Notes,
+                UserID = workout.UserID
+
+            };
+
+            if (workout == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(workoutDTOs);
+
+        }
+
+        // GET: api/WorkoutData/FindUserWorkout/1
+        [ResponseType(typeof(Workout))]
+        [HttpGet]
         [Route("api/WorkoutData/FindUserWorkout/{userId}")]
         public IEnumerable<WorkoutDTO> FindUserWorkout(int userId)
         {
@@ -172,5 +203,7 @@ namespace MyFitnessTracker.Controllers
             return db.Workouts.Count(w => w.WorkoutID == id) > 0;
         }
     }
+
+
 }
 

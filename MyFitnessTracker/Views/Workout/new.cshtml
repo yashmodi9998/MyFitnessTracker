@@ -1,4 +1,5 @@
 ﻿
+<script src="~/Scripts/scripts.js"></script>
 @{
     ViewBag.Title = "Create";
 }
@@ -16,11 +17,19 @@
         <label>Duration</label> <input type="number" name="Duration" />
     </div>
     <div>
-        <label>ExerciseID</label> <input type="number" name="ExerciseID" />
+        <label for="exerciseDropdown">Select Exercise:</label>
+        <select id="exerciseDropdown" name="ExerciseID" onchange="updateSubExerciseDropdown()">
+            <option value="-1">-- Select Exercise --</option>
+        </select>
     </div>
     <div>
-        <label>SubExerciseID</label> <input type="number" name="SubExerciseID" />
+        <label for="subExerciseDropdown">Select Sub-Exercise:</label>
+
+        <select id="subExerciseDropdown" name="SubExerciseID">
+            <option value="-1">-- Select Sub-Exercise --</option>
+        </select>
     </div>
+
     <div>
         <label>Weight</label> <input type="number" name="Weight" />
     </div>

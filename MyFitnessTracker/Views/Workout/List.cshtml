@@ -4,7 +4,8 @@
 }
 @foreach (var workout in Model)
 {
-    <h2><a href="/Workout/Details/@workout.UserID">@workout.UserName</a></h2>
+    <h2><a href="/Workout/Details/@workout.WorkoutID">@workout.WorkoutID</a></h2>
+    <p>Exercise: @workout.UserName</p>
     <p>Exercise: @workout.ExerciseName</p>
     <p>Sub Exercise: @workout.SubExerciseName</p>
     <p>Duration: @workout.Duration</p>
