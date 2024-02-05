@@ -7,41 +7,41 @@
 
 <h2>Create Workout</h2>
 <form action="/Workout/Create" method="POST">
-    <div>
-        <label>UserId:</label> <input type="text" name="UserId" />
+    <div class="mb-3" >
+        <label class="form-label">UserId:</label> <input class="form-control" type="text" name="UserId" />
     </div>
-    <div>
-        <label> WorkoutDate</label> <input type="datetime" name="WorkoutDate" />
+    <div class="mb-3">
+        <label class="form-label"> WorkoutDate</label> <input class="form-control" type="date" name="WorkoutDate" />
     </div>
-    <div>
-        <label>Duration</label> <input type="number" name="Duration" />
+    <div class="mb-3">
+        <label class="form-label">Duration</label> <input class="form-control" type="number" name="Duration" />
     </div>
-    <div>
-        <label for="exerciseDropdown">Select Exercise:</label>
-        <select id="exerciseDropdown" name="ExerciseID" onchange="updateSubExerciseDropdown()">
+    <div class="mb-3">
+        <label   for="exerciseDropdown">Select Exercise:</label>
+        <select class="form-select" id="exerciseDropdown" name="ExerciseID" onchange="updateSubExerciseDropdown()">
             <option value="-1">-- Select Exercise --</option>
         </select>
-    </div>
-    <div>
-        <label for="subExerciseDropdown">Select Sub-Exercise:</label>
+    </div >
+    <div class="mb-3">
+        <label  for="subExerciseDropdown">Select Sub-Exercise:</label>
 
-        <select id="subExerciseDropdown" name="SubExerciseID">
+        <select class="form-select" id="subExerciseDropdown" name="SubExerciseID">
             <option value="-1">-- Select Sub-Exercise --</option>
-        </select>
+        </selectclass="form-select">
     </div>
 
-    <div>
-        <label>Weight</label> <input type="number" name="Weight" />
+    <div class="mb-3">
+        <label class="form-label">Weight</label> <input class="form-control" type="number" name="Weight" />
     </div>
-    <div>
-        <label>Reps</label> <input type="number" name="Reps" />
+    <div class="mb-3">
+        <label class="form-label"> Reps</label> <input class="form-control" type="number" name="Reps" />
     </div>
-    <div>
-        <label>Notes</label> <input type="text" name="Notes" />
+    <div class="mb-3">
+        <label class="form-label">Notes</label> <input class="form-control" type="text" name="Notes" />
     </div>
 
-    <div>
-        <input type="submit" value="Add Workout" />
+    <divclass="mb-3">
+        <input type="submit"class="btn btn-primary" value="Add Workout" />
 
     </div>
 </form>

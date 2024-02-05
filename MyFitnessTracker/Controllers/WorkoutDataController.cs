@@ -32,6 +32,7 @@ namespace MyFitnessTracker.Controllers
             // Transform each Workout object into WorkoutDTO and add to the list
             Workouts.ForEach(a => WorkoutDTOs.Add(new WorkoutDTO()
             {
+                WorkoutID = a.WorkoutID,
                 WorkoutDate = a.WorkoutDate,
                 UserName = a.UsersData.FName,
                 ExerciseName = a.MainExercises.ExerciseName,
@@ -57,11 +58,15 @@ namespace MyFitnessTracker.Controllers
         public IHttpActionResult FindWorkout(int workoutId)
         {
             Workout workout= db.Workouts.Find(workoutId);
+            
             WorkoutDTO workoutDTOs = new WorkoutDTO()
             {
-                WorkoutID = workout.WorkoutID,
+
+                WorkoutID = workoutId,
                 WorkoutDate = workout.WorkoutDate,
                 UserName = workout.UsersData.FName,
+                ExerciseId = workout.ExerciseID,
+                SubExerciseId = workout.SubExerciseID,
                 ExerciseName = workout.MainExercises.ExerciseName,
                 SubExerciseName = workout.SubExercises.SubExerciseName,
                 Duration = workout.Duration,
@@ -126,7 +131,7 @@ namespace MyFitnessTracker.Controllers
             db.SaveChanges();
 
             return Ok();
-            //            curl - H "Content-Type:application/json" - d @workout.json https://localhost:44391/api/WorkoutData/AddWorkout
+            //curl - H "Content-Type:application/json" - d @workout.json https://localhost:44391/api/WorkoutData/AddWorkout
             //CreatedAtRoute("DefaultApi", new { id = workout.WorkoutID}, workout);
         }
 
@@ -149,7 +154,7 @@ namespace MyFitnessTracker.Controllers
 
             return Ok();
 
-//            curl - d "" https://localhost:44391/api/WorkoutData/DeleteWorkout/2
+         //curl - d "" https://localhost:44391/api/WorkoutData/DeleteWorkout/2
         }
 
         // POST: api/WorkoutData/UpdateWorkout/1

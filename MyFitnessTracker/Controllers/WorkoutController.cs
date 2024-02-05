@@ -108,16 +108,17 @@ namespace MyFitnessTracker.Controllers
             //grab the workout information
 
             //objective: communicate with our animal data api to retrieve one animal
-            //curl https://localhost:44324/api/animaldata/findanimal/{id}
+            //curl https://localhost:44391/api/WorkoutData/FindWorkout/1
 
             string url = "FindWorkout/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
+            Debug.WriteLine("IntoEdit ");
             Debug.WriteLine("The response code is ");
             Debug.WriteLine(response.StatusCode);
+
             WorkoutDTO selectedUSer = response.Content.ReadAsAsync<WorkoutDTO>().Result;
-            Debug.WriteLine("Workout received : ");
-            //Debug.WriteLine(selectedanimal.AnimalName);
+            Debug.WriteLine("Workout received : "+selectedUSer.WorkoutID);
 
             return View(selectedUSer);
         }
@@ -147,15 +148,44 @@ namespace MyFitnessTracker.Controllers
                 //POST: api/AnimalData/UpdateAnimal/{id}
                 //Header : Content-Type: application/json
                 HttpResponseMessage response = client.PostAsync(url, content).Result;
+                Debug.WriteLine("res : "+response);
 
 
 
-
-                return RedirectToAction("Details/" + id);
+                return RedirectToAction("List" );
             }
             catch
             {
+                Debug.WriteLine("Error:");
+
                 return View();
+            }
+        }
+        // GET: Workout/Delete/5
+        public ActionResult DeleteConfirm(int id)
+        {
+            string url = "findworkout/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            WorkoutDTO workout = response.Content.ReadAsAsync<WorkoutDTO>().Result;
+            return View(workout);
+        }
+
+        // POST: Workout/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            string url = "DeleteWorkout/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

@@ -2,15 +2,27 @@
 @{
     ViewBag.Title = "List";
 }
-@foreach (var workout in Model)
-{
-    <h2><a href="/Workout/Details/@workout.WorkoutID">@workout.WorkoutID</a></h2>
-    <p>Exercise: @workout.UserName</p>
-    <p>Exercise: @workout.ExerciseName</p>
-    <p>Sub Exercise: @workout.SubExerciseName</p>
-    <p>Duration: @workout.Duration</p>
-    <p>Weight: @workout.Weight</p>
-    <p>Reps: @workout.Reps</p>
-    <p>Notes: @workout.Notes</p>
-
-}
+<p><a href="/Workout/New/">Add New Workout</a></p>
+<hr />
+<div class="container">
+    <div class="row">
+        @foreach (var workout in Model)
+        {
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Name: @workout.UserName</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Exercise: @workout.ExerciseName</h6>
+                        <p class="card-text">Sub Exercise: @workout.SubExerciseName</p>
+                        <p class="card-text">Duration: @workout.Duration</p>
+                        <p class="card-text">Weight: @workout.Weight</p>
+                        <p class="card-text">Reps: @workout.Reps</p>
+                        <p class="card-text">Notes: @workout.Notes</p>
+                        <a class="card-link" href="/Workout/Edit/@workout.WorkoutID">Update Workout</a>
+                        <a class="card-link" href="/Workout/DeleteConfirm/@workout.WorkoutID">Delete Workout</a>
+</div>
+                </div>
+                }
+            </div>
+        </div>
