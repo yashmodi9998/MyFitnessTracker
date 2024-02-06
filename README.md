@@ -2,8 +2,8 @@
 
 
 
-##DataController File:
-###APIs
+## DataController File:
+### APIs:
 // GET: api/WorkoutData/ListWorkout  
 api to list out all the workout details
 
@@ -26,7 +26,7 @@ api for updating user's workout
 // curl -H "Content-Type:application/json" -d @workoutupdate.json  https://localhost:44391/api/WorkoutData/UpdateWorkout/6
 
 
-###View:
+### View:
 // GET: Workout/List
 To listout all  user's workout
  
