@@ -13,53 +13,53 @@ namespace MyFitnessTracker.Controllers
 {
     public class WorkoutController : Controller
     {
-
+        // HttpClient to communicate with the Workout API
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
         static WorkoutController()
         {
+            // Initialize the  HttpClient with the base address of the Workout API
+
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44391/api/WorkoutData/");
         }
         // GET: Workout/List
         public ActionResult List()
         {
-            //1st sem
-            //INITIATE bike data controller
-            //call list method
-            //return list to view
-
-            //            2nd sem
-            // communicate with workout api to retrieve a list of all workout of users
+            // Fetch a list of workouts from the Workout API
             // https://localhost:44324/api/WorkoutData/ListWorkout
             string url = "ListWorkout";
             HttpResponseMessage response = client.GetAsync(url).Result;
-            Debug.WriteLine("The response code is ");
-            Debug.WriteLine(response.StatusCode);
+            // Debug.WriteLine("The response code is ");
+            // Debug.WriteLine(response.StatusCode);
 
+
+            // Convert the response content into a list of WorkoutDTO
             IEnumerable<WorkoutDTO> workouts = response.Content.ReadAsAsync<IEnumerable<WorkoutDTO>>().Result;
-            Debug.WriteLine("Number of workouts received : ");
-            Debug.WriteLine(workouts.Count());
+          
+            // Debug.WriteLine("Number of workouts received : ");
+            // Debug.WriteLine(workouts.Count());
             return View(workouts);
         }
 
         // GET: Workout/Details/5
         public ActionResult Details(int id)
         {
-            //objective: communicate with our animal data api to retrieve one animal
-            //curl https://localhost:44324/api/WorkoutData/FindUserWorkout/{id}
+           
+            // https://localhost:44324/api/WorkoutData/FindUserWorkout/{id}
+            // Fetch details of a specific workout by ID from the Workout API
 
             string url = "FindUserWorkout/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The response code is ");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response code is "+ response.StatusCode);
 
+            // Convert the response content into a list of WorkoutDTO
 
             List<WorkoutDTO> userWorkouts = response.Content.ReadAsAsync<List<WorkoutDTO>>().Result;
-            Debug.WriteLine("user workouts received: ");
-            Debug.WriteLine(userWorkouts.Count);
+            //Debug.WriteLine("user workouts received: ");
+            //Debug.WriteLine(userWorkouts.Count);
 
             return View(userWorkouts);
         }
@@ -67,11 +67,12 @@ namespace MyFitnessTracker.Controllers
         [HttpPost]
         public ActionResult Create(Workout workout)
         {
-            Debug.WriteLine("the json payload is :");
-            Debug.WriteLine(workout.WorkoutID);
-            //objective: add a new workouy into our system using the API
+
             //curl -H "Content-Type:application/json" -d @workout.json https://localhost:44324/api/workoutdata/addworkout
+            // Add a new workout using the Workout API
+
             string url = "addworkout";
+            // Serialize the workout object into JSON
 
             string jsonpayload = jss.Serialize(workout);
 
@@ -79,6 +80,7 @@ namespace MyFitnessTracker.Controllers
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
+            //To send a POST request to add a new workout
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)
@@ -96,6 +98,8 @@ namespace MyFitnessTracker.Controllers
 
             return View();
         }
+
+        //To create new Workout View
         // GET: Workout/New
         public ActionResult New()
         {
@@ -105,17 +109,18 @@ namespace MyFitnessTracker.Controllers
         // GET: Workout/Edit/5
         public ActionResult Edit(int id)
         {
-            //grab the workout information
 
-            //objective: communicate with our animal data api to retrieve one animal
             //curl https://localhost:44391/api/WorkoutData/FindWorkout/1
+            // Fetch details of a specific workout by ID for editing
 
             string url = "FindWorkout/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("IntoEdit ");
-            Debug.WriteLine("The response code is ");
-            Debug.WriteLine(response.StatusCode);
+            // Debug.WriteLine("IntoEdit ");
+            // Debug.WriteLine("The response code is ");
+            //Debug.WriteLine(response.StatusCode);
+
+            // Deserialize the response content into a WorkoutDTO
 
             WorkoutDTO selectedUSer = response.Content.ReadAsAsync<WorkoutDTO>().Result;
             Debug.WriteLine("Workout received : "+selectedUSer.WorkoutID);
@@ -131,13 +136,14 @@ namespace MyFitnessTracker.Controllers
             {
                 Debug.WriteLine("The new Workout info is:");
                 Debug.WriteLine(workout.WorkoutID);
-                Debug.WriteLine(workout.UserID);
 
                 //serialize into JSON
                 //Send the request to the API
+                // Update the information of an existing workout using the Workout API
 
                 string url = "UpdateWorkout/" + id;
 
+                // Serialize the updated workout object into JSON
 
                 string jsonpayload = jss.Serialize(workout);
                 Debug.WriteLine(jsonpayload);
@@ -145,8 +151,10 @@ namespace MyFitnessTracker.Controllers
                 HttpContent content = new StringContent(jsonpayload);
                 content.Headers.ContentType.MediaType = "application/json";
 
-                //POST: api/AnimalData/UpdateAnimal/{id}
-                //Header : Content-Type: application/json
+             
+
+                // Send a POST request to update the workout
+
                 HttpResponseMessage response = client.PostAsync(url, content).Result;
                 Debug.WriteLine("res : "+response);
 
@@ -174,9 +182,12 @@ namespace MyFitnessTracker.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            // Delete a workout by ID using the Workout API
             string url = "DeleteWorkout/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
+
+            // Send a POST request to delete the workout
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
             if (response.IsSuccessStatusCode)

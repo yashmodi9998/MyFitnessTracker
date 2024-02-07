@@ -51,14 +51,15 @@ namespace MyFitnessTracker.Controllers
             return WorkoutDTOs;
         }
 
-        // GET: api/WorkoutData/FindUserWorkout/1
+        // GET: api/WorkoutData/FindWorkout/1
         [ResponseType(typeof(Workout))]
         [HttpGet]
         [Route("api/WorkoutData/FindWorkout/{workoutId}")]
         public IHttpActionResult FindWorkout(int workoutId)
         {
+            //To find perticulart workoutid
             Workout workout= db.Workouts.Find(workoutId);
-            
+            //gets all the elements of workout into WorkoutDTO
             WorkoutDTO workoutDTOs = new WorkoutDTO()
             {
 
@@ -76,7 +77,7 @@ namespace MyFitnessTracker.Controllers
                 UserID = workout.UserID
 
             };
-
+            //If there's no workout it will return as Not found
             if (workout == null)
             {
                 return NotFound();
@@ -102,6 +103,7 @@ namespace MyFitnessTracker.Controllers
             // Transform each Workout object into WorkoutDTO and add to the list
             userWorkouts.ForEach(a => WorkoutDTOs.Add(new WorkoutDTO()
             {
+                WorkoutID = a.WorkoutID,
                 WorkoutDate = a.WorkoutDate,
                 UserName = a.UsersData.FName,
                 ExerciseName = a.MainExercises.ExerciseName,
@@ -122,10 +124,12 @@ namespace MyFitnessTracker.Controllers
         [Route("api/WorkoutData/AddWorkout")]
         public IHttpActionResult AddWorkout(Workout workout)
         {
+            //Check if modelstate and request is valid or not
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            //Query that add new workout
 
             db.Workouts.Add(workout);
             db.SaveChanges();
@@ -143,12 +147,14 @@ namespace MyFitnessTracker.Controllers
         [Route("api/WorkoutData/DeleteWorkout/{id}")]
         public IHttpActionResult DeleteWorkout(int id)
         {
+            //Find for the workout that want to delete
             Workout workout = db.Workouts.Find(id);
+            //if there is no workout it will return it as notfound;
             if (workout == null)
             {
                 return NotFound();
             }
-
+            //Query that removes the workout if it is there
             db.Workouts.Remove(workout);
             db.SaveChanges();
 
@@ -163,14 +169,15 @@ namespace MyFitnessTracker.Controllers
         [Route("api/WorkoutData/UpdateWorkout/{id}")]
         public IHttpActionResult UpdateWorkout(int id, Workout workout)
         {
-            Debug.WriteLine("Into the Update Method");
-
+            //Debug.WriteLine("Into the Update Method");
+            //Check if the model state and request is valid or not
             if (!ModelState.IsValid)
             {
                 Debug.WriteLine("Model State invalid");
                 return BadRequest(ModelState);
             }
-
+            //check if id that want to update is there or not
+            //if not it will return it as badRequest
             if (id != workout.WorkoutID)
             {
                 Debug.WriteLine("Id not matched");
@@ -179,7 +186,7 @@ namespace MyFitnessTracker.Controllers
                // Debug.WriteLine("Post Param"+ workout.UsersData.FName);
                 return BadRequest();
             }
-
+            //If entry is there it will modify the data
             db.Entry(workout).State = EntityState.Modified;
 
             try

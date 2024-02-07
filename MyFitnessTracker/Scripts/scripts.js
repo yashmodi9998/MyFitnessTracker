@@ -1,13 +1,16 @@
 ﻿
 async function fetchData() {
     try {
+        //TO get response from api
         var response = await fetch('https://localhost:44391/api/Exercise/list');
+        //Convert data into jsonfile
         var data = await response.json();
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
+//function to get exercise value
 async function populateExerciseDropdown() {
     var exerciseDropdown = document.getElementById("exerciseDropdown");
 
@@ -17,7 +20,7 @@ async function populateExerciseDropdown() {
     // TO Get unique exercise IDs
     var uniqueExerciseIDs = [...new Set(data.map(item => item.ExerciseID))];
 
-    // TO Populate the Exercise dropdown with unique exercise options
+    // TO Populate the Exercise dropdown with  exercise ids options
     uniqueExerciseIDs.forEach(function (exerciseID) {
         var exerciseName = data.find(item => item.ExerciseID === exerciseID).ExerciseName;
         var option = document.createElement("option");

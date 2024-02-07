@@ -1,0 +1,29 @@
+﻿@model List<MyFitnessTracker.Models.UserDataDTO>
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<a href="/Users/List">Go back to list</a>
+<div class="container">
+    <div class="row">
+        @foreach (var user in Model)
+        {
+
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Name: @user.FName  @user.LName
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Phone Number: @user.PhoneNumber
+                    </h6>
+                    <p class="card-text">Email: @user.Email</p>
+                    <p class="card-text">Joining Date: @user.JoinDate</p>
+                    <a class="card-link" href="/Users/Edit/@user.UserId">Update Details</a>
+                    <a class="card-link" href="/Users/DeleteConfirm/@user.UserId">Delete User</a>
+                </div>
+            </div>
+        }
+        </div>
+</div>

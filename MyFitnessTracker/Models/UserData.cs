@@ -24,7 +24,10 @@ namespace MyFitnessTracker.Models
         public int UserId { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
+
+        public int PhoneNumber { get; set; }
         public string Email { get; set; }
+        public string FitnessGoal { get; set; }
         public DateTime JoinDate { get; set; }
 
     }

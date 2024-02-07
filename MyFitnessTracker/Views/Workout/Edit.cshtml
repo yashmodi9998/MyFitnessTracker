@@ -11,7 +11,7 @@
    <input type="hidden" name="UserId" value="@Model.UserID" />
  <p> @Model.UserName</p>
     <div>
-        <label> WorkoutDate</label> <input type="date" name="WorkoutDate" value="@Model.WorkoutDate" />
+        <label> WorkoutDate</label> <input type="date" name="WorkoutDate" value="@Model.WorkoutDate.ToString("yyyy-MM-dd")" />
     </div>
     <div>
         <label>Duration</label> <input type="number" name="Duration" value="@Model.Duration" />

@@ -1,0 +1,32 @@
+﻿@model MyFitnessTracker.Models.UserDataDTO
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<h2>Update</h2>
+<form action="/Users/Update/@Model.UserId" method="POST">
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    <div class="mb-3">
+        <label class="form-label">First Name:</label> <input class="form-control" type="text" name="FName" value="@Model.FName" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Last Name:</label> <input class="form-control" type="text" name="LName" value="@Model.LName" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email:</label> <input class="form-control" type="email" name="Email" value="@Model.Email" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Phone Number:</label> <input class="form-control" type="text" name="PhoneNumber" value="@Model.PhoneNumber" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Joining Date:</label> <input class="form-control" type="date" name="JoinDate" value="@Model.JoinDate.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Goal:</label> <input class="form-control" type="text" name="FitnessGoal" value="@Model.FitnessGoal" />
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary" value="Update " />
+    </div>
+</form>
+

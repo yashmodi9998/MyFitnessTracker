@@ -4,16 +4,41 @@
 }
 
 <h2>Details</h2>
-<a href="/Workout/List">Go back to list</a>
-@foreach (var workout in Model)
-{
+<p><a href="/Workout/New/">Add New Workout</a></p>
 
-    <a href="/Workout/Details/@workout.WorkoutID">Edit Workout</a>
-    <h2>@workout.UserName</h2>
-    <p>@workout.ExerciseName</p>
-    <p>@workout.SubExerciseName</p>
-    <p>@workout.Reps</p>
-    <p>@workout.Weight</p>
-    <p>@workout.WorkoutDate</p>
-    <p>@workout.Notes</p>
-}
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Exercise</th>
+            <th scope="col">Sub Exercise</th>
+            <th scope="col">Time </th>
+            <th scope="col">Weight </th>
+            <th scope="col">Reps </th>
+            <th scope="col">Notes </th>
+            <th scope="col"> </th>
+            <th scope="col"> </th>
+        </tr>
+    </thead>
+    
+    @foreach (var workout in Model)
+    {
+        <tbody>
+            <tr>
+                <th scope="row">@workout.WorkoutID</th>
+                <td> @workout.ExerciseName</td>
+                <td>@workout.SubExerciseName</td>
+                <td>@workout.Duration</td>
+                <td>@workout.Weight</td>
+                <td>@workout.Reps</td>
+                <td>@workout.Notes</td>
+                <td><a class="card-link" href="/Workout/Edit/@workout.WorkoutID">✏️</a></td>
+                <td><a class="card-link" href="/Workout/DeleteConfirm/@workout.WorkoutID">❌</a></td>
+            </tr>
+        </tbody>
+           
+         
+            }
+    </table>
+<a href="/Users/List">Go back to list</a>
+          
