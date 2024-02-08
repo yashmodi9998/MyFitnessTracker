@@ -50,6 +50,7 @@ namespace MyFitnessTracker.Models
         public int UserID { get; set; }
         public DateTime WorkoutDate { get; set; }
         public string UserName { get; set; }
+        public string UserLastName { get; set; }
         public int ExerciseId { get; set; }
         public int SubExerciseId { get; set; }
         public string ExerciseName { get; set; }

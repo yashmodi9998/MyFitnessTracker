@@ -87,23 +87,32 @@ namespace MyFitnessTracker.Controllers
 
         }
 
+        
         // GET: api/WorkoutData/FindUserWorkout/1
         [ResponseType(typeof(Workout))]
         [HttpGet]
         [Route("api/WorkoutData/FindUserWorkout/{userId}")]
-        public IEnumerable<WorkoutDTO> FindUserWorkout(int userId)
+        public IHttpActionResult FindUserWorkout(int userId)
         {
             // Retrieve all workouts for the specified user from the database
             // Used Where method to use a query like select * from workout where workout.userId == userId
             List<Workout> userWorkouts = db.Workouts.Where(w => w.UserID == userId).ToList();
-
+            Debug.WriteLine("usr wrkout" + userWorkouts.ToList());
             // Create a list to store WorkoutDTO objects
             List<WorkoutDTO> WorkoutDTOs = new List<WorkoutDTO>();
+
+            if( userWorkouts == null || userWorkouts.Count == 0)
+            {
+                UserData user = db.UsersData.Find(userId);
+                return BadRequest(user.UserId.ToString());
+
+            }
 
             // Transform each Workout object into WorkoutDTO and add to the list
             userWorkouts.ForEach(a => WorkoutDTOs.Add(new WorkoutDTO()
             {
-                WorkoutID = a.WorkoutID,
+                
+            WorkoutID = a.WorkoutID,
                 WorkoutDate = a.WorkoutDate,
                 UserName = a.UsersData.FName,
                 ExerciseName = a.MainExercises.ExerciseName,
@@ -114,8 +123,12 @@ namespace MyFitnessTracker.Controllers
                 Notes = a.Notes,
                 UserID = a.UserID
             }));
-            return WorkoutDTOs;
+            Debug.WriteLine(" wrkout" );
+            return Ok(WorkoutDTOs);
         }
+
+
+       
 
 
         // POST: api/WorkoutData/AddWorkout

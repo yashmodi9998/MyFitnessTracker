@@ -1,33 +1,37 @@
 ﻿
 <script src="~/Scripts/scripts.js"></script>
 @{
-    ViewBag.Title = "Create";
+   ViewBag.Title = "Create";
 }
 
 
+
+
+
 <h2>Create Workout</h2>
+
+
 <form action="/Workout/Create" method="POST">
-    <div class="mb-3" >
-        <label class="form-label">UserId:</label> <input class="form-control" type="text" name="UserId" />
-    </div>
+    <input class="form-control" type="hidden" name="UserId" value="@ViewBag.UserID" />
+
     <div class="mb-3">
-        <label class="form-label"> WorkoutDate</label> <input class="form-control" type="date" name="WorkoutDate" />
+        <label class="form-label">WorkoutDate</label> <input class="form-control" type="date" name="WorkoutDate" />
     </div>
     <div class="mb-3">
         <label class="form-label">Duration</label> <input class="form-control" type="number" name="Duration" />
     </div>
     <div class="mb-3">
-        <label   for="exerciseDropdown">Select Exercise:</label>
+        <label for="exerciseDropdown">Select Exercise:</label>
         <select class="form-select" id="exerciseDropdown" name="ExerciseID" onchange="updateSubExerciseDropdown()">
             <option value="-1">-- Select Exercise --</option>
         </select>
-    </div >
+    </div>
     <div class="mb-3">
-        <label  for="subExerciseDropdown">Select Sub-Exercise:</label>
+        <label for="subExerciseDropdown">Select Sub-Exercise:</label>
         <select class="form-select" id="subExerciseDropdown" name="SubExerciseID">
             <option value="-1">-- Select Sub-Exercise --</option>
-        </select class="form-select">
-    </div> 
+        </select>
+    </div>
 
     <div class="mb-3">
         <label class="form-label">Weight</label> <input class="form-control" type="number" name="Weight" />
@@ -39,9 +43,9 @@
         <label class="form-label">Notes</label> <input class="form-control" type="text" name="Notes" />
     </div>
 
-    <divclass="mb-3">
-        <input type="submit"class="btn btn-primary" value="Add Workout" />
+    <divclass ="mb-3">
+        <input type="submit" class="btn btn-primary" value="Add Workout" />
 
-    </div>
+        </div>
 </form>
 

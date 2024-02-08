@@ -1,8 +1,11 @@
 ﻿using MyFitnessTracker.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
@@ -28,12 +31,10 @@ namespace MyFitnessTracker.Controllers
         public ActionResult List()
         {
             // Fetch a list of workouts from the Workout API
-            // https://localhost:44324/api/WorkoutData/ListWorkout
+            // https://localhost:44391/api/WorkoutData/ListWorkout
             string url = "ListWorkout";
             HttpResponseMessage response = client.GetAsync(url).Result;
-            // Debug.WriteLine("The response code is ");
-            // Debug.WriteLine(response.StatusCode);
-
+        
 
             // Convert the response content into a list of WorkoutDTO
             IEnumerable<WorkoutDTO> workouts = response.Content.ReadAsAsync<IEnumerable<WorkoutDTO>>().Result;
@@ -46,28 +47,58 @@ namespace MyFitnessTracker.Controllers
         // GET: Workout/Details/5
         public ActionResult Details(int id)
         {
-           
-            // https://localhost:44324/api/WorkoutData/FindUserWorkout/{id}
+
+            // https://localhost:44391/api/WorkoutData/FindUserWorkout/{id}
             // Fetch details of a specific workout by ID from the Workout API
 
             string url = "FindUserWorkout/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            //Debug.WriteLine("The response code is "+ response.StatusCode);
+            Debug.WriteLine("find The response code is "+ response.StatusCode);
 
             // Convert the response content into a list of WorkoutDTO
 
-            List<WorkoutDTO> userWorkouts = response.Content.ReadAsAsync<List<WorkoutDTO>>().Result;
             //Debug.WriteLine("user workouts received: ");
             //Debug.WriteLine(userWorkouts.Count);
+            if (response.IsSuccessStatusCode)
+            {
+                // Convert the response content into a list of WorkoutDTO
+                List<WorkoutDTO> userWorkouts = response.Content.ReadAsAsync<List<WorkoutDTO>>().Result;
+                ViewBag.UserId = id;
 
-            return View(userWorkouts);
+
+                    return View(userWorkouts);
+              
+            }
+
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                // Read the content directly from the response
+                string data = response.Content.ReadAsStringAsync().Result;
+                
+                Debug.WriteLine("sjshd "+data);
+                JObject jsonResponse = JObject.Parse(data);
+
+                // Extract the numeric value from the "Message" property
+                string userIdString = jsonResponse["Message"].ToString();
+         
+                ViewBag.UserId = userIdString;
+                return View();
+                // Convert the userIdString to an integer
+                
+           
+            }
+            else
+            {
+                // Handle other error cases as needed
+                return RedirectToAction("Error");
+            }
         }
         // POST: Workout/Create
         [HttpPost]
-        public ActionResult Create(Workout workout)
+        public ActionResult Create(int UserId,Workout workout)
         {
-
+            workout.UserID = UserId;
             //curl -H "Content-Type:application/json" -d @workout.json https://localhost:44324/api/workoutdata/addworkout
             // Add a new workout using the Workout API
 
@@ -85,7 +116,7 @@ namespace MyFitnessTracker.Controllers
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return Redirect($"~/Workout/Details/{UserId}");
             }
             else
             {
@@ -101,8 +132,50 @@ namespace MyFitnessTracker.Controllers
 
         //To create new Workout View
         // GET: Workout/New
-        public ActionResult New()
+        public ActionResult New(int UserID)
         {
+            string userInfoUrl = "https://localhost:44391/api/UserData/users"; 
+            HttpResponseMessage responses = client.GetAsync(userInfoUrl).Result;
+            Debug.WriteLine("New "+responses);
+
+
+            if (responses.IsSuccessStatusCode)
+            {
+                List<UserDataDTO> usersInfo = responses.Content.ReadAsAsync<List<UserDataDTO>>().Result;
+
+                // Assuming UserDataDTO has a property named UserID
+                int foundUserID = -1; // Default value in case the user is not found
+
+                foreach (UserDataDTO user in usersInfo)
+                {
+                    if (user.UserId == UserID)
+                    {
+                        // Found the user, set the foundUserID
+                        foundUserID = user.UserId;
+                        //break; // Break the loop since we found the user
+                    }
+                }
+
+                // Now, you can use the foundUserID as needed
+                ViewBag.UserID = foundUserID;
+
+                Debug.WriteLine("---- " + foundUserID);
+                return View();
+            }
+            else
+            {
+                // Handle the case where the request is not successful
+                // For example, you can return an error view or display a message
+                return RedirectToAction("Error");
+            }
+            //Debug.WriteLine("Res in new "+responses);
+            //List<UserDataDTO> usersInfo = responses.Content.ReadAsAsync<List<UserDataDTO>>().Result;
+            //Debug.WriteLine("Users in new " + usersInfo);
+
+            //ViewBag.userID = UserID;
+
+            //Debug.WriteLine("---- " + UserID);*/
+
             return View();
         }
 
