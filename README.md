@@ -1,7 +1,5 @@
 # MyFitnessTracker
 
-# My Fitness Tracker CMS
-
 ## Overview
 
 Welcome to My Fitness Tracker CMS, a web application developed using C# with the MVC (Model-View-Controller) architecture. This application is tailored for fitness enthusiasts, offering a centralized platform to track workouts, monitor progress, and set and achieve fitness goals.
