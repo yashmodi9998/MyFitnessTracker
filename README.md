@@ -1,6 +1,81 @@
 # MyFitnessTracker
 
+# My Fitness Tracker CMS
 
+## Overview
+
+Welcome to My Fitness Tracker CMS, a web application developed using C# with the MVC (Model-View-Controller) architecture. This application is tailored for fitness enthusiasts, offering a centralized platform to track workouts, monitor progress, and set and achieve fitness goals.
+
+## Technologies Used
+
+
+- **ASP.NET MVC:** The Model-View-Controller architecture is employed for a modular and organized front. C# programming language for server-side logic, offering strong typing and robust features.
+- **HTML5 CSS JS:** Standard web technologies are used for the structure and styling of the application.
+- **Entity Framework:** An Object-Relational Mapping (ORM) framework for database interactions, providing a simplified data access layer.
+- **SQL:** The relational database management system stores and manages data.
+
+## Features
+
+### User Profiles
+
+- Users can create profiles by providing basic information and setting fitness goals.
+- - The application supports adding, updating, and deleting workout details.
+
+### Workout Logging
+
+- Users/trainers can log \ workouts, including exercises, sets, reps, duration, weight, and additional notes.
+- The application supports adding, updating, and deleting workout details.
+
+### Progress Tracking
+
+- Gym Admins can set and track fitness goals for clients.
+  - The progress tracking system is designed to keep users motivated and focused on their fitness journey.
+
+## Database Structure
+
+The application utilizes four main tables to store data:
+
+### User Table
+
+- **UserID**: INT (Primary Key)
+- **UserName**: VARCHAR(255) (Not Null)
+- **Email**: VARCHAR(255) (Not Null)
+- **PhoneNumber**: VARCHAR(255) (Not Null)
+- **JoinDate**: VARCHAR(255)
+
+### Exercise Table
+
+- **ExerciseID**: INT (Primary Key)
+- **ExerciseName**: VARCHAR(255) (Not Null)
+- **Description**: TEXT
+- **Category**: VARCHAR(50)
+
+### SubExercise Table
+
+- **SubExerciseID**: INT (Primary Key)
+- **ExerciseID**: INT (Foreign Key to Exercise Table)
+- **SubExerciseName**: VARCHAR(255) (Not Null)
+- **Description**: TEXT
+
+### Workout Table
+
+- **WorkoutID**: INT (Primary Key)
+- **UserID**: INT (Foreign Key to User Table)
+- **WorkoutDate**: DATE (Not Null)
+- **Duration**: INT (Not Null)
+- **ExerciseID**: INT (Foreign Key to Exercise Table)
+- **SubExerciseID**: INT (Foreign Key to SubExercise Table)
+- **Weight**: INT (Not Null)
+- **Reps**: INT (Not Null)
+- **Notes**: TEXT
+
+## APIs
+
+The application exposes two main APIs:
+
+1. **User API:** Manages user-related operations, including user creation, updating profiles, and setting fitness goals.
+
+2. **Workout API:** Handles workout-related operations, such as logging workouts, updating details, and retrieving workout history.
 
 ## DataController API:
 ### Workout:
