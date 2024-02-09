@@ -27,7 +27,7 @@ Welcome to My Fitness Tracker CMS, a web application developed using C# with the
 ### Progress Tracking
 
 - Gym Admins can set and track fitness goals for clients.
-  - The progress tracking system is designed to keep users motivated and focused on their fitness journey.
+- The progress tracking system is designed to keep users motivated and focused on their fitness journey.
 
 ## Database Structure
 
