@@ -37,7 +37,7 @@ api for updating user's workout
 // curl -H "Content-Type:application/json" -d @workoutupdate.json https://localhost:44391/api/WorkoutData/UpdateWorkout/6
 
 
-##USERS
+## USERS
 
 // GET: api/UserData/Users
 
