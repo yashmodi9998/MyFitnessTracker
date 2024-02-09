@@ -19,11 +19,11 @@ Welcome to My Fitness Tracker CMS, a web application developed using C# with the
 ### User Profiles
 
 - Users can create profiles by providing basic information and setting fitness goals.
-- - The application supports adding, updating, and deleting workout details.
+- The application supports adding, updating, and deleting workout details.
 
 ### Workout Logging
 
-- Users/trainers can log \ workouts, including exercises, sets, reps, duration, weight, and additional notes.
+- Users/trainers can log workouts, including exercises, sets, reps, duration, weight, and additional notes.
 - The application supports adding, updating, and deleting workout details.
 
 ### Progress Tracking
@@ -37,37 +37,45 @@ The application utilizes four main tables to store data:
 
 ### User Table
 
-- **UserID**: INT (Primary Key)
-- **UserName**: VARCHAR(255) (Not Null)
-- **Email**: VARCHAR(255) (Not Null)
-- **PhoneNumber**: VARCHAR(255) (Not Null)
-- **JoinDate**: VARCHAR(255)
+| Column      | Data Type    | Constraints   |
+|-------------|--------------|---------------|
+| UserID      | INT          | PRIMARY KEY   |
+| UserName    | VARCHAR(255) | NOT NULL      |
+| Email       | VARCHAR(255) | NOT NULL      |
+| PhoneNumber | VARCHAR(255) | NOT NULL      |
+| JoinDate    | VARCHAR(255) |               |
 
 ### Exercise Table
 
-- **ExerciseID**: INT (Primary Key)
-- **ExerciseName**: VARCHAR(255) (Not Null)
-- **Description**: TEXT
-- **Category**: VARCHAR(50)
+| Column       | Data Type    | Constraints   |
+|--------------|--------------|---------------|
+| ExerciseID   | INT          | PRIMARY KEY   |
+| ExerciseName | VARCHAR(255) | NOT NULL      |
+| Description  | TEXT         |               |
+| Category     | VARCHAR(50)  |               |
 
 ### SubExercise Table
 
-- **SubExerciseID**: INT (Primary Key)
-- **ExerciseID**: INT (Foreign Key to Exercise Table)
-- **SubExerciseName**: VARCHAR(255) (Not Null)
-- **Description**: TEXT
+| Column          | Data Type    | Constraints   |
+|-----------------|--------------|---------------|
+| SubExerciseID   | INT          | PRIMARY KEY   |
+| ExerciseID      | INT          | FOREIGN KEY   |
+| SubExerciseName | VARCHAR(255) | NOT NULL      |
+| Description     | TEXT         |               |
 
 ### Workout Table
 
-- **WorkoutID**: INT (Primary Key)
-- **UserID**: INT (Foreign Key to User Table)
-- **WorkoutDate**: DATE (Not Null)
-- **Duration**: INT (Not Null)
-- **ExerciseID**: INT (Foreign Key to Exercise Table)
-- **SubExerciseID**: INT (Foreign Key to SubExercise Table)
-- **Weight**: INT (Not Null)
-- **Reps**: INT (Not Null)
-- **Notes**: TEXT
+| Column        | Data Type    | Constraints   |
+|---------------|--------------|---------------|
+| WorkoutID     | INT          | PRIMARY KEY   |
+| UserID        | INT          | FOREIGN KEY   |
+| WorkoutDate   | DATE         | NOT NULL      |
+| Duration      | INT          | NOT NULL      |
+| ExerciseID    | INT          | FOREIGN KEY   |
+| SubExerciseID | INT          | FOREIGN KEY   |
+| Weight        | INT          | NOT NULL      |
+| Reps          | INT          | NOT NULL      |
+| Notes         | TEXT         |               |
 
 ## APIs
 
@@ -193,7 +201,7 @@ Post request that creates a new user
 
 // GET: Users/Edit/5
 
-Form for updating the entry of user
+Form for updating the entry of the user
 
 // POST: Users/Update/5
 
@@ -201,7 +209,7 @@ Post request that updates user detail
 
 // GET: Users/Delete/5
 
-form that use to delete the user
+form that used to delete the user
 
  // POST: Users/Delete/5
  
