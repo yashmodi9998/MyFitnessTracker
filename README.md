@@ -38,7 +38,7 @@ API for updating the user's workout
 // curl -H "Content-Type:application/json" -d @workoutupdate.json https://localhost:44391/api/WorkoutData/UpdateWorkout/6
 
 
-## USERS
+### USERS
 
 // GET: api/UserData/Users
 
@@ -62,9 +62,9 @@ API for updating the user's detail
 
 
 
-### View:
+## View:
 
-## WORKOUT
+### WORKOUT
 // GET: Workout/List
 
 To list all  user's workout
@@ -99,8 +99,7 @@ form for user to delete the workout
 
 
 
-## USERS:
-### View:
+### USERS:
 // GET: Users/List
 
 To list all  users
