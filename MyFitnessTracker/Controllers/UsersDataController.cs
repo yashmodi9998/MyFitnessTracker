@@ -51,9 +51,9 @@ namespace MyFitnessTracker.Controllers
         [Route("api/UserData/FindUser/{userId}")]
         public IHttpActionResult FindWorkout(int UserId)
         {
-            //To find perticulart workoutid
+            //To find perticulart userId
             UserData userData = db.UsersData.Find(UserId);
-            //gets all the elements of workout into WorkoutDTO
+            //gets all the elements of user into UserDataDTO
             UserDataDTO userDataDTO = new UserDataDTO()
             {
 
@@ -66,7 +66,7 @@ namespace MyFitnessTracker.Controllers
                 FitnessGoal = userData.FitnessGoal
 
             };
-            //If there's no workout it will return as Not found
+            //If there's no userdata it will return as Not found
             if (userData == null)
             {
                 return NotFound();
@@ -86,7 +86,7 @@ namespace MyFitnessTracker.Controllers
             {
                 return BadRequest(ModelState);
             }
-            //Query that add new workout
+            //Query that add new user
 
             db.UsersData.Add(userData);
             db.SaveChanges();
@@ -104,9 +104,9 @@ namespace MyFitnessTracker.Controllers
         [Route("api/UserData/DeleteUser/{id}")]
         public IHttpActionResult DeleteUser(int id)
         {
-            //Find for the workout that want to delete
+            //Find for the user that want to delete
             UserData userData= db.UsersData.Find(id);
-            //if there is no workout it will return it as notfound;
+            //if there is no user it will return it as notfound;
             if (userData == null)
             {
                 return NotFound();
@@ -117,7 +117,7 @@ namespace MyFitnessTracker.Controllers
 
             return Ok();
 
-            //curl - d "" https://localhost:44391/api/UserData/DeleteWorkout/2
+            //curl - d "" https://localhost:44391/api/UserData/DeleteUser/2
         }
 
         // POST: api/UserData/UpdateUser/1
@@ -137,9 +137,9 @@ namespace MyFitnessTracker.Controllers
             //if not it will return it as badRequest
             if (id != userData.UserId)
             {
-                Debug.WriteLine("Id not matched");
-                Debug.WriteLine("Get Param " + id);
-                Debug.WriteLine("Post Param" + userData.UserId);
+               // Debug.WriteLine("Id not matched");
+                //Debug.WriteLine("Get Param " + id);
+                //Debug.WriteLine("Post Param" + userData.UserId);
                 return BadRequest();
             }
             //If entry is there it will modify the data
@@ -162,10 +162,10 @@ namespace MyFitnessTracker.Controllers
                 }
             }
             return Ok();
-            // curl -H "Content-Type:application/json" -d @workoutupdate.json  https://localhost:44391/api/WorkoutData/UpdateWorkout/6
+            // curl -H "Content-Type:application/json" -d @userupdate.json  https://localhost:44391/api/UserData/UpdateUser/6
         }
 
-        // Check if a workout with the specified ID exists
+        // Check if a user with the specified ID exists
         private bool UserExist(int id)
         {
             return db.UsersData.Count(u => u.UserId == id) > 0;

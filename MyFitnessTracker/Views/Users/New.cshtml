@@ -1,33 +1,43 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Create";
 }
 
-
-<h2>Register User</h2>
-<form action="/Users/Create" method="POST">
-    <div class="mb-3">
-        <label class="form-label">First Name:</label> <input class="form-control" type="text" name="FName" />
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Last Name:</label> <input class="form-control" type="text" name="LName" />
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Email:</label> <input class="form-control" type="email" name="Email" />
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Phone Number:</label> <input class="form-control" type="tel" name="PhoneNumber" />
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Joining Date:</label> <input class="form-control" type="date" name="JoinDate" />
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Goal:</label> <input class="form-control" type="text" name="PhoneNumber" />
-    </div>
-
-    <divclass ="mb-3">
-        <input type="submit" class="btn btn-primary" value="Add Workout" />
-
+<div class="container mt-5">
+    <h2>Register User</h2>
+    <form action="/Users/Create" method="POST">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name:</label>
+                <input id="firstName" class="form-control" type="text" name="FName" required />
+            </div>
+            <div class="col-md-6">
+                <label for="lastName" class="form-label">Last Name:</label>
+                <input id="lastName" class="form-control" type="text" name="LName" required />
+            </div>
         </div>
-</form>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email:</label>
+                <input id="email" class="form-control" type="email" name="Email" required />
+            </div>
+            <div class="col-md-6">
+                <label for="phoneNumber" class="form-label">Phone Number:</label>
+                <input id="phoneNumber" class="form-control" type="tel" name="PhoneNumber" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="joiningDate" class="form-label">Joining Date:</label>
+                <input id="joiningDate" class="form-control" type="date" name="JoinDate" required />
+            </div>
+            <div class="col-md-6">
+                <label for="goal" class="form-label">Goal:</label>
+                <input id="goal" class="form-control" type="text" name="Goal" />
+            </div>
+        </div>
 
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Register User</button>
+        </div>
+    </form>
+</div>

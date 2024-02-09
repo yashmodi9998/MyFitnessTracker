@@ -35,6 +35,7 @@ namespace MyFitnessTracker.Controllers
                 WorkoutID = a.WorkoutID,
                 WorkoutDate = a.WorkoutDate,
                 UserName = a.UsersData.FName,
+                UserLastName = a.UsersData.LName,
                 ExerciseName = a.MainExercises.ExerciseName,
                 SubExerciseName = a.SubExercises.SubExerciseName,
                 Duration = a.Duration,
@@ -45,8 +46,6 @@ namespace MyFitnessTracker.Controllers
 
                 
     }));
-
-
             // Return the list of WorkoutDTOs
             return WorkoutDTOs;
         }
@@ -66,6 +65,7 @@ namespace MyFitnessTracker.Controllers
                 WorkoutID = workoutId,
                 WorkoutDate = workout.WorkoutDate,
                 UserName = workout.UsersData.FName,
+                UserLastName = workout.UsersData.LName,
                 ExerciseId = workout.ExerciseID,
                 SubExerciseId = workout.SubExerciseID,
                 ExerciseName = workout.MainExercises.ExerciseName,
@@ -82,7 +82,7 @@ namespace MyFitnessTracker.Controllers
             {
                 return NotFound();
             }
-
+            //return workoutdto
             return Ok(workoutDTOs);
 
         }
@@ -97,13 +97,17 @@ namespace MyFitnessTracker.Controllers
             // Retrieve all workouts for the specified user from the database
             // Used Where method to use a query like select * from workout where workout.userId == userId
             List<Workout> userWorkouts = db.Workouts.Where(w => w.UserID == userId).ToList();
-            Debug.WriteLine("usr wrkout" + userWorkouts.ToList());
-            // Create a list to store WorkoutDTO objects
+            //Debug.WriteLine("usr wrkout" + userWorkouts.ToList());
+            // list to store WorkoutDTO objects
             List<WorkoutDTO> WorkoutDTOs = new List<WorkoutDTO>();
 
+
+            //if there is no user in workout table. It will get ine user from the users table
+            //for adding new workout purpose
             if( userWorkouts == null || userWorkouts.Count == 0)
             {
                 UserData user = db.UsersData.Find(userId);
+                //it will pass user id from the badrequest.
                 return BadRequest(user.UserId.ToString());
 
             }
@@ -123,7 +127,7 @@ namespace MyFitnessTracker.Controllers
                 Notes = a.Notes,
                 UserID = a.UserID
             }));
-            Debug.WriteLine(" wrkout" );
+            //Debug.WriteLine(" wrkout" );
             return Ok(WorkoutDTOs);
         }
 
@@ -148,6 +152,8 @@ namespace MyFitnessTracker.Controllers
             db.SaveChanges();
 
             return Ok();
+
+            //CURL command to check on command line.
             //curl - H "Content-Type:application/json" - d @workout.json https://localhost:44391/api/WorkoutData/AddWorkout
             //CreatedAtRoute("DefaultApi", new { id = workout.WorkoutID}, workout);
         }

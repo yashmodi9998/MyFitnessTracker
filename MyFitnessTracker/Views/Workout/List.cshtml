@@ -2,30 +2,43 @@
 @{
     ViewBag.Title = "List";
 }
-<p><a href="/Workout/New/">Add New Workout</a></p>
 <hr />
 <div class="container">
-    <div class="row">
-        @foreach (var workout in Model)
-        {
-            <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        Name: @workout.UserName
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        Exercise: @workout.ExerciseName
-                    </h6>
-                    <p class="card-text">Sub Exercise: @workout.SubExerciseName</p>
-                    <p class="card-text">Duration: @workout.Duration</p>
-                    <p class="card-text">Weight: @workout.Weight</p>
-                    <p class="card-text">Reps: @workout.Reps</p>
-                    <p class="card-text">Notes: @workout.Notes</p>
-                    <a class="card-link" href="/Workout/Edit/@workout.WorkoutID">Update Workout</a>
-                    <a class="card-link" href="/Workout/DeleteConfirm/@workout.WorkoutID">Delete Workout</a>
-                </div>
-            </div>
-        
-        }
-    </div>
- </div>
+    <table class="table table-hover table-bordered mt-4">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+
+                <th scope="col">Exercise</th>
+                <th scope="col">Sub Exercise</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Reps</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var workout in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/Workout/Details/@workout.UserID">@workout.UserName @workout.UserLastName</a>
+                    </td>
+                    <td>@workout.WorkoutDate</td>
+                    <td>@workout.ExerciseName</td>
+                    <td>@workout.SubExerciseName</td>
+                    <td>@workout.Duration</td>
+                    <td>@workout.Weight</td>
+                    <td>@workout.Reps</td>
+                    <td>@workout.Notes</td>
+                    <td>
+                        <a href="/Workout/Edit/@workout.WorkoutID" class="btn btn-outline-info">Update</a>
+                        <a href="/Workout/DeleteConfirm/@workout.WorkoutID" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -4,45 +4,48 @@
     ViewBag.Title = "Edit";
 }
 
+<div class="container mt-5">
+    <h2 class="mb-4">Edit Workout</h2>
+    <form action="/Workout/Update/@Model.WorkoutID" method="POST">
+        <input type="hidden" name="WorkoutId" value="@Model.WorkoutID" />
+        <input type="hidden" name="UserId" value="@Model.UserID" />
+        <p> @Model.UserName @Model.UserLastName</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label"> WorkoutDate</label> <input class="form-control" type="date" name="WorkoutDate" value="@Model.WorkoutDate.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Duration</label> <input class="form-control" type="number" name="Duration" value="@Model.Duration" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="exerciseDropdown">Select Exercise:</label>
+                    <select class="form-select" id="exerciseDropdown" name="ExerciseID" onchange="updateSubExerciseDropdown()">
+                        <option value="@Model.ExerciseId">@Model.ExerciseName</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="subExerciseDropdown">Select Sub-Exercise:</label>
 
-<h2>Edit Workout</h2>
-<form action="/Workout/Update/@Model.WorkoutID" method="POST">
-    <input type="hidden" name="WorkoutId" value="@Model.WorkoutID" />
-   <input type="hidden" name="UserId" value="@Model.UserID" />
- <p> @Model.UserName</p>
-    <div>
-        <label> WorkoutDate</label> <input type="date" name="WorkoutDate" value="@Model.WorkoutDate.ToString("yyyy-MM-dd")" />
-    </div>
-    <div>
-        <label>Duration</label> <input type="number" name="Duration" value="@Model.Duration" />
-    </div>
-    <div>
-        <label for="exerciseDropdown">Select Exercise:</label>
-        <select id="exerciseDropdown" name="ExerciseID" onchange="updateSubExerciseDropdown()">
-            <option value="@Model.ExerciseId">@Model.ExerciseName</option>
-        </select>
-    </div>
-    <div>
-        <label for="subExerciseDropdown">Select Sub-Exercise:</label>
+                    <select class="form-select" id="subExerciseDropdown" name="SubExerciseID">
+                        <option value="@Model.SubExerciseId">@Model.SubExerciseName</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Weight</label> <input class="form-control" type="number" name="Weight" value="@Model.Weight" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Reps</label> <input class="form-control" type="number" name="Reps" value="@Model.Reps" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Notes</label> <input class="form-control" type="text" name="Notes" value="@Model.Notes" />
+                </div>
+            </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn-success btn" value="Update Workout" />
 
-        <select id="subExerciseDropdown" name="SubExerciseID">
-            <option value="@Model.SubExerciseId">@Model.SubExerciseName</option>
-        </select>
-    </div>
-
-    <div>
-        <label>Weight</label> <input type="number" name="Weight" value="@Model.Weight" />
-    </div>
-    <div>
-        <label>Reps</label> <input type="number" name="Reps" value="@Model.Reps" />
-    </div>
-    <div>
-        <label>Notes</label> <input type="text" name="Notes" value="@Model.Notes" />
-    </div>
-
-    <div>
-        <input type="submit" value="Update Workout" />
-
-    </div>
+                </div>
 </form>
 

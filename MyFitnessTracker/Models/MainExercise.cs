@@ -8,6 +8,7 @@ namespace MyFitnessTracker.Models
 {
     public class MainExercise
     {
+        //mainexercise table. This table is use to store main exercise. For eg. Chest, Leg
         [Key]
         public int ExerciseID { get; set; }
 

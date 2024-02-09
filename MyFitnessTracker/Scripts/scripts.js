@@ -60,5 +60,7 @@ function updateSubExerciseDropdown() {
 
 // Call the function to populate the Exercise dropdown on page load
 window.onload = function () {
+   
     populateExerciseDropdown();
+    
 };

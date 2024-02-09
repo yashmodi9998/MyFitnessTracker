@@ -212,6 +212,10 @@
     <Compile Include="Migrations\202401312207334_mig1.designer.cs">
       <DependentUpon>202401312207334_mig1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402082319214_usersphonenumber.cs" />
+    <Compile Include="Migrations\202402082319214_usersphonenumber.designer.cs">
+      <DependentUpon>202402082319214_usersphonenumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -307,6 +311,7 @@
     <Content Include="Views\Users\New.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\DeleteConfirm.cshtml" />
+    <Content Include="Views\Users\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401312207334_mig1.resx">
       <DependentUpon>202401312207334_mig1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402082319214_usersphonenumber.resx">
+      <DependentUpon>202402082319214_usersphonenumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

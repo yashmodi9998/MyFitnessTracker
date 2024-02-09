@@ -25,8 +25,8 @@ namespace MyFitnessTracker.Controllers
         // GET: Users/List
         public ActionResult List()
         {
-            // Fetch a list of workouts from the User API
-            // https://localhost:44324/api/UserData/User
+            // Fetch a list of users from the User API
+            // https://localhost:44391/api/UserData/User
             string url = "Users";
             HttpResponseMessage response = client.GetAsync(url).Result;
             // Debug.WriteLine("The response code is ");
@@ -36,8 +36,6 @@ namespace MyFitnessTracker.Controllers
             // Convert the response content into a list of UserDTO
             IEnumerable<UserDataDTO> users = response.Content.ReadAsAsync<IEnumerable<UserDataDTO>>().Result;
 
-            Debug.WriteLine("Number of Users received : ");
-             Debug.WriteLine(users.Count());
             return View(users);
         }
         // POST: Users/Create
@@ -45,11 +43,10 @@ namespace MyFitnessTracker.Controllers
         public ActionResult Create(UserData userData)
         {
 
-            //curl -H "Content-Type:application/json" -d @workout.json https://localhost:44324/api/UserData/addUser
-            // Add a new workout using the Workout API
+            // Add a new user using the user API
 
             string url = "addUser";
-            // Serialize the workout object into JSON
+            // Serialize the user object into JSON
 
             string jsonpayload = jss.Serialize(userData);
 
@@ -92,7 +89,7 @@ namespace MyFitnessTracker.Controllers
         {
 
             //curl https://localhost:44391/api/UserData/FindUser/1
-            // Fetch details of a specific workout by ID for editing
+            // Fetch details of a specific user by ID for editing
 
             string url = "FindUser/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -101,7 +98,7 @@ namespace MyFitnessTracker.Controllers
             Debug.WriteLine("The response code is ");
             Debug.WriteLine(response.StatusCode);
 
-            // Deserialize the response content into a WorkoutDTO
+            // Deserialize the response content into a UserDTO
 
             UserDataDTO userDataDTO = response.Content.ReadAsAsync<UserDataDTO>().Result;        
             return View(userDataDTO);
@@ -118,7 +115,7 @@ namespace MyFitnessTracker.Controllers
 
                 //serialize into JSON
                 //Send the request to the API
-                // Update the information of an existing workout using the User API
+                // Update the information of an existing user using the User API
 
                 string url = "UpdateUser/" + id;
 
@@ -132,7 +129,7 @@ namespace MyFitnessTracker.Controllers
 
 
 
-                // Send a POST request to update the workout
+                // Send a POST request to update the user
 
                 HttpResponseMessage response = client.PostAsync(url, content).Result;
                 Debug.WriteLine("res : " + response);
@@ -165,7 +162,7 @@ namespace MyFitnessTracker.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            // Delete a workout by ID using the Workout API
+            // Delete a user by ID using the user API
             Debug.WriteLine("Into Delete Confirm ");
             string url = "DeleteUser/" + id;
             HttpContent content = new StringContent("");

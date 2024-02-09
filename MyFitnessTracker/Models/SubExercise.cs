@@ -9,6 +9,8 @@ namespace MyFitnessTracker.Models
 {
     public class SubExercise
     {
+        //this table is use to get data based on mainexercise
+        //for eg. if someone select leg as their main exercise it will give all the legs exercise in this table
         [Key]
         public int SubExerciseID { get; set; }
 

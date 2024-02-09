@@ -38,9 +38,7 @@ namespace MyFitnessTracker.Controllers
 
             // Convert the response content into a list of WorkoutDTO
             IEnumerable<WorkoutDTO> workouts = response.Content.ReadAsAsync<IEnumerable<WorkoutDTO>>().Result;
-          
-            // Debug.WriteLine("Number of workouts received : ");
-            // Debug.WriteLine(workouts.Count());
+     
             return View(workouts);
         }
 
@@ -54,7 +52,7 @@ namespace MyFitnessTracker.Controllers
             string url = "FindUserWorkout/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("find The response code is "+ response.StatusCode);
+            Debug.WriteLine("find - The response code is "+ response.StatusCode);
 
             // Convert the response content into a list of WorkoutDTO
 
@@ -70,9 +68,10 @@ namespace MyFitnessTracker.Controllers
                     return View(userWorkouts);
               
             }
-
+            
             else if (response.StatusCode == HttpStatusCode.BadRequest)
             {
+                //this condition will work whenever there is no entry in workout and user want to add workout.
                 // Read the content directly from the response
                 string data = response.Content.ReadAsStringAsync().Result;
                 
@@ -136,45 +135,35 @@ namespace MyFitnessTracker.Controllers
         {
             string userInfoUrl = "https://localhost:44391/api/UserData/users"; 
             HttpResponseMessage responses = client.GetAsync(userInfoUrl).Result;
-            Debug.WriteLine("New "+responses);
+            //Debug.WriteLine("New "+responses);
 
 
             if (responses.IsSuccessStatusCode)
-            {
+            {  
+                // Fetches the list of users
                 List<UserDataDTO> usersInfo = responses.Content.ReadAsAsync<List<UserDataDTO>>().Result;
 
-                // Assuming UserDataDTO has a property named UserID
-                int foundUserID = -1; // Default value in case the user is not found
-
+                int foundUserID = -1;
+                // Finds the user ID in usersInfo
                 foreach (UserDataDTO user in usersInfo)
                 {
                     if (user.UserId == UserID)
                     {
-                        // Found the user, set the foundUserID
                         foundUserID = user.UserId;
-                        //break; // Break the loop since we found the user
                     }
                 }
 
-                // Now, you can use the foundUserID as needed
+                //Used ViewBag to store users detail.
                 ViewBag.UserID = foundUserID;
 
-                Debug.WriteLine("---- " + foundUserID);
+               // Debug.WriteLine("---- " + foundUserID);
                 return View();
             }
             else
             {
-                // Handle the case where the request is not successful
-                // For example, you can return an error view or display a message
                 return RedirectToAction("Error");
             }
-            //Debug.WriteLine("Res in new "+responses);
-            //List<UserDataDTO> usersInfo = responses.Content.ReadAsAsync<List<UserDataDTO>>().Result;
-            //Debug.WriteLine("Users in new " + usersInfo);
-
-            //ViewBag.userID = UserID;
-
-            //Debug.WriteLine("---- " + UserID);*/
+          
 
             return View();
         }
