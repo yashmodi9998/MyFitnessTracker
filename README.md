@@ -82,133 +82,147 @@ The application exposes two main APIs:
 1. **User API:** Manages user-related operations, including user creation, updating profiles, and setting fitness goals.
 
 2. **Workout API:** Handles workout-related operations, such as logging workouts, updating details, and retrieving workout history.
+# My Fitness Tracker CMS APIs
 
-## DataController API:
-### Workout:
+## Workout APIs
 
-// GET: api/WorkoutData/ListWorkout 
+### List All Workouts
 
-API to list out all the workout details
+- **Endpoint:** `GET /api/WorkoutData/ListWorkout`
+- **Description:** API to list out all the workout details.
 
-// GET: api/WorkoutData/FindWorkout/1
+### Find Workout by ID
 
-API to get particular workout details with an id
+- **Endpoint:** `GET /api/WorkoutData/FindWorkout/{id}`
+- **Description:** API to get particular workout details with an ID.
 
-// GET: api/WorkoutData/FindUserWorkout/1
+### Find User's Workout by ID
 
-API to get particular user's workout with details
+- **Endpoint:** `GET /api/WorkoutData/FindUserWorkout/{id}`
+- **Description:** API to get a particular user's workout with details using their ID.
 
-// POST: api/WorkoutData/AddWorkout
+### Add New Workout
 
-API for creating a new workout for the user
+- **Endpoint:** `POST /api/WorkoutData/AddWorkout`
+- **Description:** API for creating a new workout for the user.
 
-//curl - H "Content-Type:application/json" - d @workout.json https://localhost:44391/api/WorkoutData/AddWorkout
-           
+### Delete Workout by ID
 
-// POST: api/WorkoutData/DeleteWorkout/1
+- **Endpoint:** `POST /api/WorkoutData/DeleteWorkout/{id}`
+- **Description:** API for deleting a particular workout with the use of an ID.
 
-API for deleting particular workout with the use of id
+### Update User's Workout
 
-//curl - d "" https://localhost:44391/api/WorkoutData/DeleteWorkout/2
- 
+- **Endpoint:** `POST /api/WorkoutData/UpdateWorkout/{id}`
+- **Description:** API for updating the user's workout.
 
-// POST: api/WorkoutData/UpdateWorkout/1
+## User APIs
 
-API for updating the user's workout
+### List All Users
 
-// curl -H "Content-Type:application/json" -d @workoutupdate.json https://localhost:44391/api/WorkoutData/UpdateWorkout/6
+- **Endpoint:** `GET /api/UserData/Users`
+- **Description:** API to list out all user's details.
 
+### Find User by ID
 
-### USERS
+- **Endpoint:** `GET /api/UserData/FindUser/{id}`
+- **Description:** API to get particular user details with an ID.
 
-// GET: api/UserData/Users
+### Add New User
 
-API to list out all the user's details
+- **Endpoint:** `POST /api/UserData/AddUser`
+- **Description:** API for creating a new user registration.
 
-// GET: api/UserData/FindUser/1
+### Delete User by ID
 
-API to get particular user details with id
+- **Endpoint:** `POST /api/UserData/DeleteUser/{id}`
+- **Description:** API for deleting particular users with the use of a user ID.
 
-// POST: api/UserData/AddUser
+### Update User Detail
 
-API for creating a new user registration
-           
-// POST: api/UserData/DeleteUser/1
+- **Endpoint:** `POST /api/UserData/UpdateUser/{id}`
+- **Description:** API for updating the user's detail.
 
-API for deleting particular users with the use of user-id
+## Workout Views
 
-// POST: api/UserData/UpdateUser/1
+### List All Workouts
 
-API for updating the user's detail
+- **Endpoint:** `GET /Workout/List`
+- **Description:** To list all user's workouts.
 
+### Display Workout Details
 
+- **Endpoint:** `GET /Workout/Details/{id}`
+- **Description:** To display the details of a particular user's workout.
 
-## View:
+### Create New Workout Form
 
-### WORKOUT
-// GET: Workout/List
+- **Endpoint:** `GET /Workout/New`
+- **Description:** Form for creating new entries of workout.
 
-To list all  user's workout
- 
-// GET: Workout/Details/5
+### Create New Workout Post Request
 
-To display the details of particular one user's workout
+- **Endpoint:** `POST /Workout/Create`
+- **Description:** Post request that creates a new workout.
 
-// GET: Workout/New
+### Update Workout Form
 
-Form for creating new entries of workout
+- **Endpoint:** `GET /Workout/Edit/{id}`
+- **Description:** Form for updating the entry of workout.
 
-// POST: Workout/Create
+### Update Workout Post Request
 
-Post request that creates new workout
+- **Endpoint:** `POST /Workout/Update/{id}`
+- **Description:** Post request that updates workout.
 
-// GET: Workout/Edit/5
+### Delete Workout Form
 
-Form for updating entry of workout
+- **Endpoint:** `GET /Workout/Delete/{id}`
+- **Description:** Form for the user to delete the workout.
 
-// POST: Workout/Update/5
+### Delete Workout Post Request
 
-Post request that updates workout
+- **Endpoint:** `POST /Workout/Delete/{id}`
+- **Description:** Post request that deletes workout.
 
-// GET: Workout/Delete/5
+## User Views
 
-form for user to delete the workout
+### List All Users
 
- // POST: Workout/Delete/5
- 
- Post request that deletes workout
+- **Endpoint:** `GET /Users/List`
+- **Description:** To list all users.
 
+### Display User Details
 
+- **Endpoint:** `GET /Users/Details/{id}`
+- **Description:** To display the details of a particular user's workout.
 
-### USERS:
-// GET: Users/List
+### Create New User Form
 
-To list all  users
- 
-// GET: Workout/Details/5
+- **Endpoint:** `GET /Users/New`
+- **Description:** Form for creating a new entry of the user.
 
-To display the details of particular one user's workout
+### Create New User Post Request
 
-// GET: Users/New
+- **Endpoint:** `POST /Users/Create`
+- **Description:** Post request that creates a new user.
 
-Form for creating a new entry of the user
+### Update User Form
 
-// POST: Users/Create
+- **Endpoint:** `GET /Users/Edit/{id}`
+- **Description:** Form for updating the entry of the user.
 
-Post request that creates a new user
+### Update User Post Request
 
-// GET: Users/Edit/5
+- **Endpoint:** `POST /Users/Update/{id}`
+- **Description:** Post request that updates user detail.
 
-Form for updating the entry of the user
+### Delete User Form
 
-// POST: Users/Update/5
+- **Endpoint:** `GET /Users/Delete/{id}`
+- **Description:** Form that is used to delete the user.
 
-Post request that updates user detail
+### Delete User Post Request
 
-// GET: Users/Delete/5
-
-form that used to delete the user
-
- // POST: Users/Delete/5
- 
- Post request that deletes user data
+- **Endpoint:** `POST /Users/Delete/{id}`
+- **Description:** Post request that deletes user data.
