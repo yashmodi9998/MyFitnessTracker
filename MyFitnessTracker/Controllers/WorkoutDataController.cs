@@ -18,6 +18,19 @@ namespace MyFitnessTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns list of all workout
+        /// </summary>
+        /// <returns>
+        /// HEADER:200(OK)
+        /// </returns>
+        /// <example>
+        /// GET:https://localhost:44391/api/WorkoutData/ListWorkout
+        /// response:
+        /// "WorkoutDTO": [ {        "Duration": 50,        "ExerciseId": 0,        "ExerciseName": "Chest", "Notes": "No",        "Reps": 50,
+       ///                      "SubExerciseId": 0,        "SubExerciseName": "flatchest",        "UserID": 2,        "UserLastName": "Vashi",        "UserName": "Priyam", "Weight": 500,        "WorkoutDate": "2023-11-10T00:00:00",        "WorkoutID": 9      },...]
+        /// 
+        /// </example>
         // GET: api/WorkoutData/ListWorkout
         [HttpGet]
         [Route("api/WorkoutData/ListWorkout")]
@@ -50,6 +63,20 @@ namespace MyFitnessTracker.Controllers
             return WorkoutDTOs;
         }
 
+        /// <summary>
+        /// Returns one workout with respect to workoutid
+        /// </summary>
+        /// <param name="workoutId">The ID of the workout to find.</param>
+        /// <returns>
+        /// HEADER:200(OK)
+        /// </returns>
+        /// <example>
+        /// GET:https://localhost:44391/api/WorkoutData/findworkout/19
+        /// response:
+        /// {        "Duration": 50,        "ExerciseId": 0,        "ExerciseName": "Chest", "Notes": "No",        "Reps": 50,
+        ///                      "SubExerciseId": 0,        "SubExerciseName": "UpperChest",        "UserID": 4,        "UserLastName": "Mehta",        "UserName": "Foram", "Weight": 200,        "WorkoutDate": "2023-11-10T00:00:00",        "WorkoutID": 19      }
+        /// 
+        /// </example>
         // GET: api/WorkoutData/FindWorkout/1
         [ResponseType(typeof(Workout))]
         [HttpGet]
@@ -87,7 +114,21 @@ namespace MyFitnessTracker.Controllers
 
         }
 
-        
+        /// <summary>
+        /// Returns list of all workout of one user
+        /// </summary>
+        /// <param name="userId">The ID of the user to find its workout.</param>
+        /// <returns>
+        /// HEADER:200(OK)
+        /// </returns>
+        /// <example>
+        /// GET:https://localhost:44391/api/WorkoutData/finduserworkout/2
+        /// response:
+        /// "WorkoutDTO": [ {        "Duration": 50,        "ExerciseId": 0,        "ExerciseName": "Chest", "Notes": "No",        "Reps": 50,
+        ///                      "SubExerciseId": 0,        "SubExerciseName": "UpperChest",        "UserID": 2,        "UserLastName": "Vashi",        "UserName": "Priyam", "Weight": 200,        "WorkoutDate": "2023-11-10T00:00:00",        "WorkoutID": 19      },...]
+        /// 
+        /// </example>
+
         // GET: api/WorkoutData/FindUserWorkout/1
         [ResponseType(typeof(Workout))]
         [HttpGet]
@@ -132,7 +173,19 @@ namespace MyFitnessTracker.Controllers
         }
 
 
-       
+        /// <summary>
+        /// Add workout for the user with respect to workout id
+        /// </summary>
+        /// <returns>
+        /// HEADER:201(OK)
+        /// </returns>
+        /// <example>
+        /// POST://curl - H "Content-Type:application/json" - d @workout.json https://localhost:44391/api/WorkoutData/AddWorkout
+            //CreatedAtRoute("DefaultApi", new { id = workout.WorkoutID}, workout);
+        /// response:Ok
+        /// 
+        /// </example>
+
 
 
         // POST: api/WorkoutData/AddWorkout
@@ -153,12 +206,22 @@ namespace MyFitnessTracker.Controllers
 
             return Ok();
 
-            //CURL command to check on command line.
-            //curl - H "Content-Type:application/json" - d @workout.json https://localhost:44391/api/WorkoutData/AddWorkout
-            //CreatedAtRoute("DefaultApi", new { id = workout.WorkoutID}, workout);
+            
+            
         }
 
-
+        /// <summary>
+        /// DELETE workout for the user with respect to workout id
+        /// </summary>
+        /// <returns>
+        /// <param name="id">The ID of the workout to delete.</param>
+        /// HEADER:201(OK)
+        /// </returns>
+        /// <example>
+        /// POST: //curl - d "" https://localhost:44391/api/WorkoutData/DeleteWorkout/2
+        /// response:Ok
+        /// 
+        /// </example>
 
         // POST: api/WorkoutData/DeleteWorkout/1
         [ResponseType(typeof(Workout))]
@@ -179,9 +242,19 @@ namespace MyFitnessTracker.Controllers
 
             return Ok();
 
-         //curl - d "" https://localhost:44391/api/WorkoutData/DeleteWorkout/2
         }
-
+        /// <summary>
+        /// Update workout for the user with respect to workout id
+        /// </summary>
+        /// <param name="id">The ID of the workout to update.</param>
+        /// <returns>
+        /// HEADER:201(OK)
+        /// </returns>
+        /// <example>
+        /// POST:  // curl -H "Content-Type:application/json" -d @workoutupdate.json  https://localhost:44391/api/WorkoutData/UpdateWorkout/6
+        /// response:Ok
+        /// 
+        /// </example>
         // POST: api/WorkoutData/UpdateWorkout/1
         [ResponseType(typeof(void))]
         [HttpPost]

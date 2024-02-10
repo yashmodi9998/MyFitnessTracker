@@ -16,6 +16,21 @@ namespace MyFitnessTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns list of all Users
+        /// </summary>
+        /// <returns>
+        /// HEADER:200(OK)
+        /// </returns>
+        /// <example>
+        /// GET:https://localhost:44391/api/userdata/Users
+        /// response:
+        /// "WorkoutDTO": 
+        /// {
+        /// "ArrayOfUserDataDTO": {
+        ///"UserDataDTO": [{"Email": "hsajh@gms.cb","FName": "Priyam","FitnessGoal": "sjdhs","JoinDate": "2004-11-18T05:00:00","LName": "Vashi","PhoneNumber": 4376618990,"UserId": 2
+        ///},...]
+        /// </example>
         // GET: api/UserData/Users
         [HttpGet]
         [Route("api/UserData/Users")]
@@ -44,7 +59,20 @@ namespace MyFitnessTracker.Controllers
             return UserDTOs;
         }
 
+        /// <summary>
+        /// Returns individual user
+        /// </summary>
+        /// <param name="UserId">The ID of the user to find.</param>
 
+        /// <returns>
+        /// HEADER:200(OK)
+        /// </returns>
+        /// <example>
+        /// GET:https://localhost:44391/api/FindUser/{userId}
+        /// response: {
+        ///"UserDataDTO": [{"Email": "hsajh@gms.cb","FName": "Priyam","FitnessGoal": "sjdhs","JoinDate": "2004-11-18T05:00:00","LName": "Vashi","PhoneNumber": 4376618990,"UserId": 2
+        ///},...]
+        /// </example>
         // GET: api/UserData/FindUser/1
         [ResponseType(typeof(Workout))]
         [HttpGet]
@@ -75,7 +103,20 @@ namespace MyFitnessTracker.Controllers
             return Ok(userDataDTO);
 
         }
-        // POST: api/WorkoutData/AddWorkout
+        /// <summary>
+        /// Add new user
+        /// </summary>
+        /// <returns>
+        /// HEADER:201(OK)
+        /// </returns>
+        /// <example>
+        /// POST://curl - H "Content-Type:application/json" - d @user.json https://localhost:44391/api/UserData/AddUser
+        //CreatedAtRoute("DefaultApi", new { id = user.userid}, user);
+        /// response:Ok
+        /// 
+        /// </example>
+
+        // POST: api/UserData/AddUser
         [ResponseType(typeof(UserData))]
         [HttpPost]
         [Route("api/UserData/AddUser")]
@@ -96,7 +137,18 @@ namespace MyFitnessTracker.Controllers
             //CreatedAtRoute("DefaultApi", new { id = user.userId}, userData);
         }
 
-
+        /// <summary>
+        /// DELETE workout for the user with respect to user id
+        /// </summary>
+        /// <param name="id">The ID of the user to delete.</param>
+        /// <returns>
+        /// HEADER:201(OK)
+        /// </returns>
+        /// <example>
+        /// POST: //curl - d "" https://localhost:44391/api/UserData/DeleteUser/1
+        /// response:Ok
+        /// 
+        /// </example>
 
         // POST: api/UserData/DeleteUser/1
         [ResponseType(typeof(UserData))]
@@ -116,10 +168,20 @@ namespace MyFitnessTracker.Controllers
             db.SaveChanges();
 
             return Ok();
-
-            //curl - d "" https://localhost:44391/api/UserData/DeleteUser/2
         }
 
+        /// <summary>
+        /// Update user details
+        /// </summary>
+        /// <param name="id">The ID of the user to update.</param>
+        /// <returns>
+        /// HEADER:201(OK)
+        /// </returns>
+        /// <example>
+        /// POST:  // curl -H "Content-Type:application/json" -d @userupdate.json  https://localhost:44391/api/UserData/UpdateUser/1
+        /// response:Ok
+        /// 
+        /// </example>
         // POST: api/UserData/UpdateUser/1
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -162,7 +224,6 @@ namespace MyFitnessTracker.Controllers
                 }
             }
             return Ok();
-            // curl -H "Content-Type:application/json" -d @userupdate.json  https://localhost:44391/api/UserData/UpdateUser/6
         }
 
         // Check if a user with the specified ID exists
