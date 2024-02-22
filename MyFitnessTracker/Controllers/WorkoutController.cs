@@ -46,10 +46,10 @@ namespace MyFitnessTracker.Controllers
         public ActionResult Details(int id)
         {
 
-            // https://localhost:44391/api/WorkoutData/FindUserWorkout/{id}
+            // https://localhost:44391/api/WorkoutData/ListWorkoutsForUser/{id}
             // Fetch details of a specific workout by ID from the Workout API
 
-            string url = "FindUserWorkout/" + id;
+            string url = "ListWorkoutsForUser/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("find - The response code is "+ response.StatusCode);

@@ -122,18 +122,18 @@ namespace MyFitnessTracker.Controllers
         /// HEADER:200(OK)
         /// </returns>
         /// <example>
-        /// GET:https://localhost:44391/api/WorkoutData/finduserworkout/2
+        /// GET:https://localhost:44391/api/WorkoutData/ListWorkoutsForUser/2
         /// response:
         /// "WorkoutDTO": [ {        "Duration": 50,        "ExerciseId": 0,        "ExerciseName": "Chest", "Notes": "No",        "Reps": 50,
         ///                      "SubExerciseId": 0,        "SubExerciseName": "UpperChest",        "UserID": 2,        "UserLastName": "Vashi",        "UserName": "Priyam", "Weight": 200,        "WorkoutDate": "2023-11-10T00:00:00",        "WorkoutID": 19      },...]
         /// 
         /// </example>
 
-        // GET: api/WorkoutData/FindUserWorkout/1
+        // GET: api/WorkoutData/ListWorkoutsForUser/1
         [ResponseType(typeof(Workout))]
         [HttpGet]
-        [Route("api/WorkoutData/FindUserWorkout/{userId}")]
-        public IHttpActionResult FindUserWorkout(int userId)
+        [Route("api/WorkoutData/ListWorkoutsForUser/{userId}")]
+        public IHttpActionResult ListWorkoutsForUser(int userId)
         {
             // Retrieve all workouts for the specified user from the database
             // Used Where method to use a query like select * from workout where workout.userId == userId
