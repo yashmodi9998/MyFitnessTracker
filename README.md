@@ -38,7 +38,8 @@ The application utilizes four main tables to store data:
 | Column      | Data Type    | Constraints   |
 |-------------|--------------|---------------|
 | UserID      | INT          | PRIMARY KEY   |
-| UserName    | VARCHAR(255) | NOT NULL      |
+| UserFName    | VARCHAR(255) | NOT NULL      |
+| UserLName    | VARCHAR(255) | NOT NULL      |
 | Email       | VARCHAR(255) | NOT NULL      |
 | PhoneNumber | VARCHAR(255) | NOT NULL      |
 | JoinDate    | VARCHAR(255) |               |
