@@ -99,7 +99,7 @@ The application exposes two main APIs:
 
 ### Find User's Workout by ID
 
-- **Endpoint:** `GET /api/WorkoutData/FindUserWorkout/{id}`
+- **Endpoint:** `GET /api/WorkoutData/ListUserWorkout/{id}`
 - **Description:** API to get a particular user's workout with details using their ID.
 
 ### Add New Workout
@@ -143,6 +143,63 @@ The application exposes two main APIs:
 
 - **Endpoint:** `POST /api/UserData/UpdateUser/{id}`
 - **Description:** API for updating the user's detail.
+
+
+## Exercise APIs
+
+### List Exercise
+
+- **Endpoint:** `GET /api/Exercise/list`
+- **Description:** API to list out all exercises.
+
+### Find Exercise by ID
+
+- **Endpoint:** `api/Exercise/FindMainExercise/{id}`
+- **Description:** API to get particular Exercise  based on Main ExerciseID.
+
+### Find SubExercise by ID
+
+- **Endpoint:** `api/Exercise/FindSubExercise/{id}`
+- **Description:** API to get particular Exercise  based on Sub ExerciseID.
+
+### Find ListWorkoutsForExercise by ID
+
+- **Endpoint:** `api/Exercise/ListWorkoutsForExercise/{id}`
+- **Description:** API to get list of workout based on particular Exercise.
+
+### Find ListWorkoutsForSubExercise by ID
+
+- **Endpoint:** `api/Exercise/ListWorkoutsForSubExercise/{id}`
+- **Description:** API to get a list of workouts based on a particular Sub Exercise.
+
+### Add New Exercise
+
+- **Endpoint:** `POST /api/Exercise/AddExercise`
+- **Description:** API for creating a new Exercise and its sub-exercise.
+
+### Delete MainExercise by ID
+
+- **Endpoint:** `POST /api/Exercise/DeleteMainExercise/{id}`
+- **Description:** API for deleting particular exercise using an exerciseID.
+
+### Delete SubExercise by ID
+
+- **Endpoint:** `POST /api/Exercise/DeleteSubExercise/{id}`
+- **Description:** API for deleting particular SubExercise using an SubExerciseID.
+
+### Update Sub Exercise by Id
+
+- **Endpoint:** `POST /api/UserData/UpdateSubExercise/{id}`
+- **Description:** API for updating the SubExercise.
+
+### Update Main Exercise by Id
+
+- **Endpoint:** `POST /api/UserData/UpdateMainExercise/{id}`
+- **Description:** API for updating the mainExercise.
+
+
+
+
 
 ## Workout Views
 
