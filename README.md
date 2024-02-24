@@ -260,7 +260,7 @@ The application exposes two main APIs:
 - **Endpoint:** `GET /Users/New`
 - **Description:** Form for creating a new entry of the user.
 
-### Create New User Post Request
+### Create a New User Post Request
 
 - **Endpoint:** `POST /Users/Create`
 - **Description:** Post request that creates a new user.
@@ -273,7 +273,7 @@ The application exposes two main APIs:
 ### Update User Post Request
 
 - **Endpoint:** `POST /Users/Update/{id}`
-- **Description:** Post request that updates user detail.
+- **Description:** Post request that updates user details.
 
 ### Delete User Form
 
@@ -284,3 +284,73 @@ The application exposes two main APIs:
 
 - **Endpoint:** `POST /Users/Delete/{id}`
 - **Description:** Post request that deletes user data.
+
+
+## Exercise Views
+
+### List All Exercise
+
+- **Endpoint:** `GET /Exercise/List`
+- **Description:** To list all Exercises.
+
+### Display Workout By Exercise
+
+- **Endpoint:** `GET GET: /Exercise/ListWorkoutByExercise/{id}`
+- **Description:** To display the list of a workout based on exercise.
+
+### Display Workout By SubExercise
+
+- **Endpoint:** `GET GET: /Exercise/ListWorkoutBySubExercise/{id}`
+- **Description:** To display the list of a workout based on SubExercise.
+
+### Create New User Form
+
+- **Endpoint:** `GET /Exercise/New`
+- **Description:** Form for creating a new entry of the exercise and its subExercise.
+
+### Create New Exercise Post Request
+
+- **Endpoint:** `POST  Exercise/CreateMainExercise`
+- **Description:** Post request that creates a new Exercise.
+
+### Update MainExercises Form
+
+- **Endpoint:** `GET /Exercise/EditExercise/{id}`
+- **Description:** Form for updating the MainExercises.
+
+### Update MainExercises Post Request
+
+- **Endpoint:** `POST Exercise/UpdateMainExercise{id}`
+- **Description:** Post request that updates MainExercises.
+
+
+### Update SubExercise Form
+
+- **Endpoint:** `GET /Exercise/EditSubExercise/{id}`
+- **Description:** Form for updating the SubExercise.
+
+### Update SubExercise Post Request
+
+- **Endpoint:** `POST Exercise/UpdateSubExercise/{id}`
+- **Description:** Post request that updates SubExercise.
+
+### Delete MainExercise Form
+
+- **Endpoint:** `GET /Exercise/DeleteConfirm/{id}`
+- **Description:** Form that is used to delete the Main Exercise.
+
+### Delete Exercise Post Request
+
+- **Endpoint:** `POST /Exercise/Delete/{id}`
+- **Description:** Post request that deletes Main Exercise.
+
+### Delete SubExercise Form
+
+- **Endpoint:** `GET /Exercise/DeleteSubExerciseConfirm/{id}`
+- **Description:** Form that is used to delete the Sub Exercise.
+
+### Delete SubExercise Post Request
+
+- **Endpoint:** `POST /Exercise/DeleteSubExercise/{id}`
+- **Description:** Post request that deletes Sub Exercise.
+
