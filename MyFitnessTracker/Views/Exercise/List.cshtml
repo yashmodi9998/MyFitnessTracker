@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MyFitnessTracker.Models.WorkoutDTO>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="container mt-5">
+    <h2>Exercise Details</h2>
+    <p><a href="/Exercise/New/" class="btn btn-outline-primary">Add New Exercise</a></p>
+  
+    
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row mt-4">
+            @foreach (var mainExerciseGroup in Model.GroupBy(x => x.ExerciseId))
+            {
+                var mainExercise = mainExerciseGroup.First();
+
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="/exercise/ListWorkoutByExercise/@mainExercise.ExerciseId" class="text-decoration-none">@mainExercise.ExerciseName</a>
+                                <span class="float-end">
+                                    <a href="/exercise/EditExercise/@mainExercise.ExerciseId" class="btn btn-link text-info"> ✏️</a>
+                                    <a href="/exercise/DeleteConfirm/@mainExercise.ExerciseId" class="btn btn-link text-danger"> ❌</a>
+                                </span>
+                            </h5>
+
+                            <ul class="list-group">
+                                @foreach (var subExercise in mainExerciseGroup)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="/exercise/listworkoutbysubexercise/@subExercise.SubExerciseId" class="text-decoration-none">@subExercise.SubExerciseName</a>
+                                        <span class="float-end">
+                                            <a href="/exercise/EditSubExercise/@subExercise.SubExerciseId" class="btn btn-link text-info">Edit </a>
+                                            <a href="/exercise/DeleteSubExerciseConfirm/@subExercise.SubExerciseId" class="btn btn-link text-danger">Delete</a>
+                                        </span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="mt-4">
+            <p>There is no Exercise.</p>
+        </div>
+    }
+
+    <a href="/Exercise/List" class="btn btn-secondary mt-4">Go Back to List</a>
+</div>

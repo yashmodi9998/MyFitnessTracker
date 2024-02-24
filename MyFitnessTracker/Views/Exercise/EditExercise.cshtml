@@ -1,0 +1,35 @@
+﻿@model MyFitnessTracker.Models.MainExerciseDTO
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container mt-5">
+    <h2>Update Details</h2>
+    <form action="/Exercise/UpdateMainExercise/@Model.ExerciseID" method="POST">
+        <input type="hidden" name="ExerciseID" value="@Model.ExerciseID" />
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="ExerciseName" class="form-label">ExerciseName:</label>
+                <input id="ExerciseName" class="form-control" type="text" name="ExerciseName" value="@Model.ExerciseName" required />
+            </div>
+  
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="Category" class="form-label">Category:</label>
+                <input id="Category" class="form-control" type="text" name="Category" value="@Model.Category" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="Description" class="form-label">Description:</label>
+                <input id="Description" class="form-control" type="text" name="Description" value="@Model.Description" required />
+            </div>
+ 
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>

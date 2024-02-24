@@ -1,0 +1,60 @@
+﻿@model List<MyFitnessTracker.Models.WorkoutDTO>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container mt-5">
+    <h2>Workout Details</h2>
+    <form action="/Workout/New" method="GET">
+        <input type="hidden" name="UserID" value="@ViewBag.UserId" />
+        <input type="submit" class="btn btn-outline-primary" value="Add New Workout" />
+    </form>
+
+    @if (Model != null)
+    {
+        <table class="table table-hover table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+
+                    <th scope="col">Name</th>
+                    <th scope="col">Exercise</th>
+                    <th scope="col">Sub Exercise</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Reps</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int counter = 1;
+                }
+                @foreach (var workout in Model)
+                {
+                    <tr>
+                        <th scope="row">@counter</th>
+                        <td>@workout.UserName @workout.UserLastName </td>
+                        <td>@workout.ExerciseName</td>
+                        <td>@workout.SubExerciseName</td>
+                        <td>@workout.Duration</td>
+                        <td>@workout.Weight</td>
+                        <td>@workout.Reps</td>
+                        <td>@workout.Notes</td>
+                        <td><a class="btn btn-outline-info" href="/Workout/Edit/@workout.WorkoutID">Edit ✏️</a></td>
+                        <td><a class="btn btn-outline-danger" href="/Workout/DeleteConfirm/@workout.WorkoutID">Delete ❌</a></td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>There is no workout.</p>
+    }
+    <a href="/Users/List" class="btn btn-secondary mt-4">Go Back to List</a>
+</div>

@@ -1,0 +1,11 @@
+﻿@model MyFitnessTracker.Models.SubExerciseDTO
+
+
+<div class="container mt-5">
+    <h2 class="mb-4">Are you sure you want to delete this Sub Exercise?</h2>
+
+    <form action="/Exercise/DeleteSubExercise/@Model.SubExerciseID" method="POST">
+        <a href="/Workout/List" class="btn btn-secondary">Cancel @Model.SubExerciseID @Model.SubExerciseName</a>
+        <input type="submit" class="btn btn-danger" value="Confirm Delete" />
+    </form>
+</div>

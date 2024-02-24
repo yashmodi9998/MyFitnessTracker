@@ -194,6 +194,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExerciseController.cs" />
     <Compile Include="Controllers\ExerciseDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -312,11 +313,19 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\DeleteConfirm.cshtml" />
     <Content Include="Views\Users\Error.cshtml" />
+    <Content Include="Views\Exercise\List.cshtml" />
+    <Content Include="Views\Exercise\ListWorkoutByExercise.cshtml" />
+    <Content Include="Views\Exercise\ListWorkoutBySubExercise.cshtml" />
+    <Content Include="Views\Exercise\New.cshtml" />
+    <Content Include="Views\Exercise\DeleteConfirm.cshtml" />
+    <Content Include="Views\Exercise\index.cshtml" />
+    <Content Include="Views\Exercise\EditExercise.cshtml" />
+    <Content Include="Views\Exercise\EditSubExercise.cshtml" />
+    <Content Include="Views\Exercise\DeleteSubExerciseConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ExerciseData\" />
-    <Folder Include="Views\Exercise\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

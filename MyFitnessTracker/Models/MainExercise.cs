@@ -12,7 +12,7 @@ namespace MyFitnessTracker.Models
         [Key]
         public int ExerciseID { get; set; }
 
-       
+
         public string ExerciseName { get; set; }
 
         public string Description { get; set; }
@@ -21,7 +21,15 @@ namespace MyFitnessTracker.Models
 
         // Navigation property for the one-to-many relationship with WorkoutModel
         public ICollection<Workout> Workouts { get; set; }
-        public ICollection<SubExercise> SubExercises{ get; set; }
+        public ICollection<SubExercise> SubExercises { get; set; }
     }
+    public class MainExerciseDTO
+    {
+        public int ExerciseID { get; set; }
+        public string ExerciseName { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
+    }
+
    
 }

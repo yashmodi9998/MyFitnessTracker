@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "New";
+}
+
+<div class="container mt-5">
+    <h2>Register New Exercise</h2>
+    <form action="/Exercise/CreateMainExercise" method="POST">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="MainExercises.ExerciseName" class="form-label">ExerciseName</label>
+                <input id="MainExercises.ExerciseName" class="form-control" type="text" name="MainExercises.ExerciseName" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="MainExercises.Description" class="form-label">Description:</label>
+                <input id="MainExercises.Description" class="form-control" type="text" name="MainExercises.Description" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="MainExercises.Category" class="form-label">Category:</label>
+                <input id="MainExercises.Category" class="form-control" type="text" name="MainExercises.Category" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="SubExerciseName" class="form-label">SubExerciseName</label>
+                <input id="SubExerciseName" class="form-control" type="text" name="SubExerciseName" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="Description" class="form-label">SubExerciseDescription:</label>
+                <input id="Description" class="form-control" type="text" name="Description" required />
+            </div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+</div>

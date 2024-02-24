@@ -34,7 +34,13 @@ namespace MyFitnessTracker.Models
     {
         public int ExerciseID { get; set; }
         public string ExerciseName { get; set; }
+        public string MainExerciseDescription { get; set; }
+   
+
+        public string Category { get; set; }    
         public int SubExerciseID { get; set; }
         public string SubExerciseName { get; set; }
+        public string SubExerciseDescription { get; set; }
+
     }
 }

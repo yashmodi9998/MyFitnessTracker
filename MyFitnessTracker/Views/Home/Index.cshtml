@@ -2,34 +2,45 @@
     ViewBag.Title = "Home Page";
 }
 
-<main>
-
-    <figure class="text-center">
-        <blockquote class="blockquote">
-            <p>If it doesn't challenge you , It doesn't change you.</p>
-        </blockquote>
-        <figcaption class="blockquote-footer">
-            <cite title="Source Title">Fred Davido</cite>
-        </figcaption>
-    </figure>
-
+<main class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <p>If it doesn't challenge you, it doesn't change you.</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <cite title="Source Title">Fred Davido</cite>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
 
     <div class="row mt-5">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Manage Workouts</h5>
-                    <p class="card-text">Add, edit, and view workouts for clients.</p>
+                    <p class="card-text">Add, edit, delete, and view workouts for clients.</p>
                     <a href="~/Workout/List" class="btn btn-outline-info">Go to Workouts</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Manage Users</h5>
-                    <p class="card-text">Add, edit, and view user profiles and details.</p>
+                    <p class="card-text">Add, edit, delete, and view user profiles and details.</p>
                     <a href="~/Users/List" class="btn btn-outline-info">Go to Users</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Exercises</h5>
+                    <p class="card-text">Add, edit, delete, and view exercises and details.</p>
+                    <a href="~/Exercise/List" class="btn btn-outline-info">Go to Exercises</a>
                 </div>
             </div>
         </div>

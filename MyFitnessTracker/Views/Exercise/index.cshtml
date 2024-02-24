@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Exercise Index";
+}
+
+<h2>Exercise Index</h2>
+
+@using (Html.BeginForm("AddExerciseData", "Exercise", FormMethod.Post))
+{
+    <div>
+        <label>Main Exercise Name:</label>
+        @Html.TextBoxFor(model => model.MainExerciseName)
+    </div>
+
+    <div>
+        <label>Main Exercise Description:</label>
+        @Html.TextBoxFor(model => model.MainExerciseDescription)
+    </div>
+
+    <div>
+        <label>Category:</label>
+        @Html.TextBoxFor(model => model.Category)
+    </div>
+
+    <div>
+        <label>Sub Exercise Name:</label>
+        @Html.TextBoxFor(model => model.SubExerciseName)
+    </div>
+
+    <div>
+        <label>Sub Exercise Description:</label>
+        @Html.TextBoxFor(model => model.SubExerciseDescription)
+    </div>
+
+    <div>
+        <input type="submit" value="Add Exercise Data" />
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div style="color: green; font-weight: bold;">
+        @ViewBag.Message
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div style="color: red; font-weight: bold;">
+        @ViewBag.ErrorMessage
+    </div>
+}
